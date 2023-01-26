@@ -1,0 +1,48 @@
+$c-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+$c-strong-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+// color
+// primary
+$c-primary-color: #5e737d;
+$c-primary-hover-color: #4a5c64;
+
+//success
+$c-success-color: #198754;
+$c-success-hover-color: #1da062;
+
+//fail
+$c-danger-color: lightcoral;
+
+
+// border
+$c-default-border-color: rgb(202, 202, 202);
+$c-hover-border-color: gray;
+
+// white
+$c-white-color: #FFF;
+
+// common hover color
+$c-common-hover-color: lightgray;
+
+// 투명도 들어간 hover
+$c-common-trans-hover-color: rgba(0,0,0,0.4);
+
+$c-border-radius: 5px;
+$c-rounded-border-radius: 20px;
+
+@import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+
+* {
+    box-sizing: border-box;
+    font-family: Galmuri9;
+}
+.flex {
+    display: flex;
+}
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+.relative {
+    position: relative;
+}
