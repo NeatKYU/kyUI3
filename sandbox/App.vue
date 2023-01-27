@@ -4,6 +4,7 @@
       <Input
         v-model="inputValue"
         placeholder="입력하세요"
+        left-icon="align-justify"
         is-validate
       />
     </main>

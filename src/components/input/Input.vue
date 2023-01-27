@@ -3,7 +3,7 @@
       class="input-wrapper"
       :class="[validateClasses, classes]"
   >
-      <!-- <c-icon v-if="leftIcon" :icon="leftIcon" class="c-input-icon"/> -->
+      <Icon v-if="leftIcon" :icon="leftIcon" class="c-input-icon"/>
       <input 
           v-if="type !== 'textarea'"
           :value="modelValue"
@@ -13,7 +13,7 @@
           :disabled="disabled"
           class="c-input"
       >
-      <!-- <c-icon v-if="rightIcon" :icon="rightIcon" class="c-input-icon"/> -->
+      <Icon v-if="rightIcon" :icon="rightIcon" class="c-input-icon"/>
 
       <textarea
           v-if="type === 'textarea'"
@@ -28,6 +28,7 @@
 
 <script setup lang="ts" name="c-input">
 import { computed } from 'vue';
+import { Icon } from '../icon/index';
 
 const emit = defineEmits(['update:modelValue']);
 
@@ -52,14 +53,14 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
-    // leftIcon: {
-    //     type: String,
-    //     default: null,
-    // },
-    // rightIcon: {
-    //     type: String,
-    //     default: null,
-    // },
+    leftIcon: {
+        type: String,
+        default: null,
+    },
+    rightIcon: {
+        type: String,
+        default: null,
+    },
 });
 
 const validateClasses = computed(() => {
