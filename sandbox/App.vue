@@ -2,14 +2,18 @@
     <main>
       <h1>Welcome to your your sandbox environment</h1>
       <Input
+        v-model="inputValue"
         placeholder="입력하세요"
-        type="email"
+        is-validate
       />
     </main>
 </template>
   
 <script setup lang="ts">
-import Input from "../src/Input.vue";
+import { ref } from 'vue';
+import Input from "../src/components/input/Input.vue";
+
+const inputValue = ref('');
 </script>
 
 <style lang="scss" scoped></style>

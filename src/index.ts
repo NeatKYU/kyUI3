@@ -1,3 +1,5 @@
-import Input from './Input.vue'
+import { Input } from './components/input/index';
 
-export { Input }
+export {
+    Input,
+}

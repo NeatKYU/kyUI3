@@ -6,6 +6,7 @@
       <!-- <c-icon v-if="leftIcon" :icon="leftIcon" class="c-input-icon"/> -->
       <input 
           v-if="type !== 'textarea'"
+          :value="modelValue"
           @input="updateInputValue"
           :placeholder="placeholder"
           :type="type"
@@ -16,6 +17,7 @@
 
       <textarea
           v-if="type === 'textarea'"
+          :value="modelValue"
           @input="updateInputValue"
           :placeholder="placeholder"
           :disabled="disabled"
@@ -24,79 +26,77 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'c-input',
-  props: {
-      value: [Number, String],
-      placeholder: String,
-      type: {
-          type: String,
-          default: 'text',
-          validator(value: string) {
-              return ['text', 'textarea', 'email', 'phone'].includes(value)
-          }
-      },
-      isValidate: {
-          type: Boolean,
-          default: false,
-      },
-      disabled: {
-          type: Boolean,
-          default: false,
-      },
-      // leftIcon: {
-      //     type: String,
-      //     default: null,
-      // },
-      // rightIcon: {
-      //     type: String,
-      //     default: null,
-      // },
-  },
-  data() {
-      return {
-          // newValue: this.pValue,
-      }
-  },
-  computed: {
-      validateClasses() {
-          return {
-              'is-danger': this.value !== '' && this.isValidate && !this.checkValidate(this.type, this.value),
-              'is-success': this.value !== '' && this.isValidate && this.checkValidate(this.type, this.value)
-          }
-      },
-      classes() {
-          return {
-              'is-disabled': this.disabled
-          }
-      }
-  },
-  methods: {
-      updateInputValue(event: any) {
-          this.$emit('input', event.target.value);
-      },
-      checkValidate(type: string, value: any) {
-        console.log('check validate ', value)
-        let checkReg: RegExp;
-        if(type === 'email') {
-          // eslint-disable-next-line
-          checkReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-        } else if(type === 'phone') {
-          checkReg = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-        } else if(this.value) {
-          return this.value.toString().length >= 1;
-        } else {
-          return false;
-        }
-        return checkReg.test(value);
-      }
-  }
+<script setup lang="ts" name="c-input">
+import { computed } from 'vue';
+
+const emit = defineEmits(['update:modelValue']);
+
+const props = defineProps({
+    modelValue: [Number, String],
+    placeholder: {
+        type: String,
+        default: '',
+    },
+    type: {
+        type: String,
+        default: 'text',
+        validator(value: string) {
+            return ['text', 'textarea', 'email', 'phone'].includes(value)
+        },
+    },
+    isValidate: {
+        type: Boolean,
+        default: false,
+    },
+    disabled: {
+        type: Boolean,
+        default: false,
+    },
+    // leftIcon: {
+    //     type: String,
+    //     default: null,
+    // },
+    // rightIcon: {
+    //     type: String,
+    //     default: null,
+    // },
+});
+
+const validateClasses = computed(() => {
+    return {
+        'is-danger': props.modelValue !== '' && props.isValidate && !checkValidate(props.type, props.modelValue),
+        'is-success': props.modelValue !== '' && props.isValidate && checkValidate(props.type, props.modelValue)
+    }
+})
+
+const classes = computed(() => {
+    return {
+        'is-disabled': props.disabled
+    }
+})
+
+const updateInputValue = (event: any) => {
+    emit('update:modelValue', event.target.value);
+}
+
+const checkValidate = (type: string, value: any) => {
+    let checkReg: RegExp;
+    if(type === 'email') {
+        // eslint-disable-next-line
+        checkReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    } else if(type === 'phone') {
+        checkReg = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+    } else if(value) {
+        return value.toString().length >= 1;
+    } else {
+        return false;
+    }
+    return checkReg.test(value);
 }
 </script>
 
 <style lang="scss" scoped>
-@import './common';
+@import '../../styles/common.scss';
 
 .c-input {
   width: 100%;
