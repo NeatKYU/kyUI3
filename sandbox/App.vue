@@ -15,6 +15,7 @@
         right-icon="align-justify"
         @click="clickButton"
       />
+      <Switch size="large"/>
     </main>
 </template>
   
@@ -22,6 +23,7 @@
 import { ref } from 'vue';
 import { Input } from "../src/components/input/index";
 import { Button } from '../src/components/button/index';
+import { Switch } from '../src/components/switch/index';
 
 const clickButton = () => {
   console.log('click!')

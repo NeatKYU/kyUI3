@@ -4,6 +4,7 @@ import type { App } from 'vue';
 import { Input } from './components/input/index';
 import { Icon } from './components/icon/index';
 import { Button } from './components/button';
+import { Switch } from './components/switch';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -19,6 +20,9 @@ const components = [
     }, {
         name: 'c-button',
         value: Button
+    }, {
+        name: 'c-switch',
+        value: Switch
     }
 ]
 
@@ -35,6 +39,7 @@ export {
     Input,
     Icon,
     Button,
+    Switch,
 
     FontAwesomeIcon,
 }
