@@ -1,9 +1,13 @@
 import type { App } from 'vue';
+
+// components
 import { Input } from './components/input/index';
 import { Icon } from './components/icon/index';
+import { Button } from './components/button';
 
-import './fontawesome/index';
+// fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import './fontawesome/index';
 
 const components = [
     {
@@ -12,6 +16,9 @@ const components = [
     }, {
         name: 'c-icon',
         value: Icon
+    }, {
+        name: 'c-button',
+        value: Button
     }
 ]
 
@@ -27,6 +34,7 @@ const kyui3 = {
 export {
     Input,
     Icon,
+    Button,
 
     FontAwesomeIcon,
 }
