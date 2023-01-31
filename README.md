@@ -9,15 +9,15 @@ npm install kyui3
 ### Usage
 ```
 // main.ts/js
-import kyui3, { Input } from 'kyui3';
+import kyui3, { ComponentName } from 'kyui3';
 import 'kyui/dist/style.css';
 const app = createApp(App);
 
-// regist fontawesome icon tag
+// regist all component & fontawesome icon tag
 app.use(kyui3)
 
-// regist Input component
-app.component('your-want-tag-name', Input);
+// regist one component
+app.component('your-want-tag-name', ComponentName);
 ```
 
 ```
