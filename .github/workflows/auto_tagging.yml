@@ -9,7 +9,6 @@ on:
     branches:
       - master # main branch로 push될 때 아래 action이 실행된다.
 jobs:
-  permissions: write-all
   build:
     runs-on: ubuntu-latest
     steps:
