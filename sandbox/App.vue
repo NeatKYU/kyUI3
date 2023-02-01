@@ -1,13 +1,13 @@
 <template>
     <main>
       <h1>Welcome to your your sandbox environment</h1>
-      <Input
+      <c-input
         v-model="inputValue"
         placeholder="입력하세요"
         left-icon="align-justify"
         is-validate
       />
-      <Button 
+      <c-button 
         size="large"
         label="label"
         rounded
@@ -15,15 +15,15 @@
         right-icon="align-justify"
         @click="clickButton"
       />
-      <Switch size="large"/>
+      <c-switch size="large"/>
+      <c-tooltip text="왼쪽 툴팁입니다!" isRight rounded>
+          <span>left</span>
+      </c-tooltip>
     </main>
 </template>
   
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Input } from "../src/components/input/index";
-import { Button } from '../src/components/button/index';
-import { Switch } from '../src/components/switch/index';
 
 const clickButton = () => {
   console.log('click!')

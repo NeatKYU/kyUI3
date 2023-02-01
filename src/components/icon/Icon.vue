@@ -5,11 +5,14 @@
 </template>
 
 <script setup lang="ts" name="c-icon">
+import { } from 'vue'
+
 const props = defineProps({
     pack: String,
     icon: String,
     size: String,
     customSize: String,
     customClass: String,
-});
+})
+
 </script>

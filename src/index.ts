@@ -3,8 +3,9 @@ import type { App } from 'vue';
 // components
 import { Input } from './components/input/index';
 import { Icon } from './components/icon/index';
-import { Button } from './components/button';
-import { Switch } from './components/switch';
+import { Button } from './components/button/index';
+import { Switch } from './components/switch/index';
+import { Tooltip } from './components/tooltip/index';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -23,6 +24,9 @@ const components = [
     }, {
         name: 'c-switch',
         value: Switch
+    }, {
+        name: 'c-tooltip',
+        value: Tooltip
     }
 ]
 
@@ -40,6 +44,7 @@ export {
     Icon,
     Button,
     Switch,
+    Tooltip,
 
     FontAwesomeIcon,
 }

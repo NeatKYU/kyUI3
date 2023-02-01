@@ -1,9 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import '../src/fontawesome/index'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import kyui3 from '../src/index';
 const app = createApp(App)
 
-app.component('f-icon', FontAwesomeIcon)
+app.use(kyui3)
 app.mount('#app')

@@ -11,9 +11,6 @@
 <script setup lang="ts" name="c-switch">
 import { ref, computed } from 'vue';
 
-let on = ref<boolean>(false);
-const ball = ref<HTMLDivElement>();
-
 const emit = defineEmits(['change']);
 
 const props = defineProps({
@@ -22,6 +19,9 @@ const props = defineProps({
         default: 'medium'
     }
 })
+
+let on = ref<boolean>(false);
+const ball = ref<HTMLDivElement>();
 
 const onoffClass = computed(() => {
     return {
