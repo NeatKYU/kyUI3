@@ -33,7 +33,7 @@ jobs:
           npm version patch && echo 'patch update'
 
       - name: push version code
-        run: git push origin dev --tags
+        run: git push origin master --tags
 
       - name: gh-action-tag-on-npm-version
         uses: neverendingqs/gh-action-tag-on-npm-version@master
