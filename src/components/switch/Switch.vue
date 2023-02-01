@@ -60,7 +60,7 @@ const moveBall = () => {
     width: 50px;
     height: 30px;
 
-    display: flex;
+    display: inline-flex;
     align-items: center;
 
     cursor: pointer;
