@@ -16,9 +16,11 @@
         @click="clickButton"
       />
       <c-switch size="large"/>
-      <c-tooltip text="왼쪽 툴팁입니다!" isRight rounded>
+      <c-tooltip text="왼쪽 툴팁입니다!" rounded>
           <span>left</span>
       </c-tooltip>
+      <c-tag textValue="primary"></c-tag>
+      <c-tag textValue="success" isSuccess size="small"/>
     </main>
 </template>
   

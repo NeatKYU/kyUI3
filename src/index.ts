@@ -6,6 +6,7 @@ import { Icon } from './components/icon/index';
 import { Button } from './components/button/index';
 import { Switch } from './components/switch/index';
 import { Tooltip } from './components/tooltip/index';
+import { Tag } from './components/tag/index';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -27,6 +28,9 @@ const components = [
     }, {
         name: 'c-tooltip',
         value: Tooltip
+    }, {
+        name: 'c-tag',
+        value: Tag
     }
 ]
 
@@ -45,6 +49,7 @@ export {
     Button,
     Switch,
     Tooltip,
+    Tag,
 
     FontAwesomeIcon,
 }
