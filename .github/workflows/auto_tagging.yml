@@ -1,4 +1,4 @@
-name: update tag
+name: update tag & package
 
 # major update: 커밋 메시지에 "perf:", "BREAKING CHANGE:"라는 문구를 써줄것!!
 # minor update: 커밋 메시지에 "feat:"라는 문구 써줄것!!
@@ -13,16 +13,46 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v5.5 # 가져다 쓸 auto tagging 프로그램
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # secrets.GITHUB_TOKEN 는 자동생성됨
+
+      - run: git config --global user.email "github-actions@example.com"
+      - run: git config --global user.name "GitHub Actions"
+
+      - name: Bump version minor
+        if: "contains(github.event.head_commit.message, 'minor')"
+        run: 
+          npm version minor && echo 'minor update'
+
+      - name: Bump version major
+        if: "contains(github.event.head_commit.message, 'major')"
+        run: 
+          npm version major && echo 'major update'
+      
+      - name: Bump version patch
+        if: "!contains(github.event.head_commit.message, 'minor') && !contains(github.event.head_commit.message, 'major')"
+        run: 
+          npm version patch && echo 'patch update'
+
+      - name: push version code
+        run: git push origin dev --tags
+
+      - name: gh-action-tag-on-npm-version
+        uses: neverendingqs/gh-action-tag-on-npm-version@master
+
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@main
+
+      # - name: Bump version and push tag
+      #   id: tag_version
+      #   uses: mathieudutour/github-tag-action@v5.5 # 가져다 쓸 auto tagging 프로그램
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }} # secrets.GITHUB_TOKEN 는 자동생성됨
+
       - name: Create a GitHub release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.tag_version.outputs.new_tag }}
-          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
+          tag_name: v${{ steps.package-version.outputs.current-version }}
+          release_name: Release v${{ steps.package-version.outputs.current-version }}
+          body: v${{ steps.package-version.outputs.current-version }}
