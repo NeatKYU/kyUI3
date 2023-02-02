@@ -7,6 +7,7 @@ import { Button } from './components/button/index';
 import { Switch } from './components/switch/index';
 import { Tooltip } from './components/tooltip/index';
 import { Tag } from './components/tag/index';
+import { Pagination } from './components/pagination/index';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -31,6 +32,9 @@ const components = [
     }, {
         name: 'c-tag',
         value: Tag
+    }, {
+        name: 'c-pagination',
+        value: Pagination
     }
 ]
 
@@ -50,6 +54,7 @@ export {
     Switch,
     Tooltip,
     Tag,
+    Pagination,
 
     FontAwesomeIcon,
 }

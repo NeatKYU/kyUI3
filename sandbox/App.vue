@@ -21,17 +21,31 @@
       </c-tooltip>
       <c-tag textValue="primary"></c-tag>
       <c-tag textValue="success" isSuccess size="small"/>
+
+      <c-pagination 
+          @changePage="changePage" 
+          :totalCount=1032
+          :perPage=10
+          :showPage=5
+          :currentPage="currentPage"
+      />
     </main>
 </template>
   
 <script setup lang="ts">
 import { ref } from 'vue';
 
+const inputValue = ref('');
+const currentPage = ref(1);
+
 const clickButton = () => {
   console.log('click!')
 }
 
-const inputValue = ref('');
+const changePage = (page: number) => {
+  currentPage.value = page;
+}
+
 </script>
 
 <style lang="scss" scoped></style>
