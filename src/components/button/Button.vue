@@ -5,19 +5,18 @@
         :class="[ type, classes ]"
         v-bind="$attrs"
     >
-        <Icon v-if="leftIcon && !isIconButton" :icon="leftIcon" />
+        <c-icon v-if="leftIcon && !isIconButton" :icon="leftIcon" />
         <span v-if="label && !isIconButton">{{ label }}</span>
         <span v-else-if="$slots.default">
             <slot />
         </span>
-        <Icon v-if="rightIcon && !isIconButton" :icon="rightIcon"/>
-        <Icon v-if="isIconButton" :icon="icon" :size="size"/>
+        <c-icon v-if="rightIcon && !isIconButton" :icon="rightIcon"/>
+        <c-icon v-if="isIconButton" :icon="icon" :size="size"/>
     </component>
 </template>
 
 <script setup lang="ts" name="c-button">
 import { computed } from 'vue';
-import { Icon } from '../icon/index';
 import config from '../../utils/config';
 
 /**
