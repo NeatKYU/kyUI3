@@ -8,11 +8,20 @@
         is-validate
       />
       <c-button 
+        size="small"
+        label="label"
+        isIconButton
+        @click="clickButton"
+      />
+      <c-button 
+        label="label"
+        isIconButton
+        @click="clickButton"
+      />
+      <c-button 
         size="large"
         label="label"
-        rounded
-        left-icon="align-justify"
-        right-icon="align-justify"
+        isIconButton
         @click="clickButton"
       />
       <c-switch size="large"/>

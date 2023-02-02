@@ -5,12 +5,13 @@
         :class="[ type, classes ]"
         v-bind="$attrs"
     >
-        <Icon v-if="leftIcon" :icon="leftIcon" />
-        <span v-if="label">{{ label }}</span>
+        <Icon v-if="leftIcon && !isIconButton" :icon="leftIcon" />
+        <span v-if="label && !isIconButton">{{ label }}</span>
         <span v-else-if="$slots.default">
             <slot />
         </span>
-        <Icon v-if="rightIcon" :icon="rightIcon"/>
+        <Icon v-if="rightIcon && !isIconButton" :icon="rightIcon"/>
+        <Icon v-if="isIconButton" :icon="icon" :size="size"/>
     </component>
 </template>
 
@@ -19,6 +20,12 @@ import { computed } from 'vue';
 import { Icon } from '../icon/index';
 import config from '../../utils/config';
 
+/**
+ * type: 
+ * label: 버튼 내용
+ * tag: <a, Link, etc... >
+ * primary: 기본 색상 모드
+ */
 const props = defineProps({
     type: [String, Object],
     label: {
@@ -50,6 +57,14 @@ const props = defineProps({
     },
     leftIcon: String,
     rightIcon: String,
+    isIconButton: {
+        type: Boolean,
+        default: false,
+    },
+    icon: {
+        type: String,
+        default: 'star',
+    }
 })
 
 const computedTag = computed(() => {
@@ -67,6 +82,7 @@ const classes = computed(() => {
         'large': props.size === 'large',
         'is-rounded': props.rounded,
         'is-disabled': props.disabled,
+        'is-icon-button': props.isIconButton,
     }
 })
 </script>
@@ -120,6 +136,26 @@ const classes = computed(() => {
         
         &:hover {
             background-color: lightgray;
+        }
+    }
+
+    &.is-icon-button {
+        padding: 0 5px 0 5px;
+
+        &.small {
+            width: 30px;
+        }
+
+        &.medium {
+            width: 40px;
+        }
+
+        &.large {
+            min-width: 50px;
+
+            &.is-rounded {
+                border-radius: 100%;
+            }
         }
     }
 
