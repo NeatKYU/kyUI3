@@ -45,6 +45,10 @@
 
       <c-dropdown title="select" :dropdownList="dropdownList">
       </c-dropdown>
+
+      <c-avatar>
+        <img src="../assets/img/logo.png"/>
+      </c-avatar>
     </main>
 </template>
   
