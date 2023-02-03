@@ -7,31 +7,63 @@
         left-icon="align-justify"
         is-validate
       />
-      <c-button 
-        size="large"
-        label="label"
-        rounded
-        left-icon="align-justify"
-        right-icon="align-justify"
-        @click="clickButton"
-      />
+      <c-button-group>
+        <c-button 
+          size="small"
+          label="label"
+          isIconButton
+          @click="clickButton"
+        />
+        <c-button 
+          label="label"
+          isIconButton
+          @click="clickButton"
+        />
+        <c-button 
+          size="large"
+          label="label"
+          isIconButton
+          animation
+          @click="clickButton"
+        />
+      </c-button-group>
       <c-switch size="large"/>
       <c-tooltip text="왼쪽 툴팁입니다!" rounded>
           <span>left</span>
       </c-tooltip>
       <c-tag textValue="primary"></c-tag>
       <c-tag textValue="success" isSuccess size="small"/>
+
+      <c-pagination 
+          @changePage="changePage" 
+          :totalCount=1032
+          :perPage=10
+          :showPage=5
+          :currentPage="currentPage"
+          isEndButton
+      />
+
+      <c-dropdown title="select" :dropdownList="dropdownList">
+      </c-dropdown>
     </main>
 </template>
   
 <script setup lang="ts">
 import { ref } from 'vue';
 
+const inputValue = ref('');
+const currentPage = ref(1);
+const selectDropdownItem = '';
+const dropdownList = ['dropdown test', 'korea', 'USA'];
+
 const clickButton = () => {
   console.log('click!')
 }
 
-const inputValue = ref('');
+const changePage = (page: number) => {
+  currentPage.value = page;
+}
+
 </script>
 
 <style lang="scss" scoped></style>
