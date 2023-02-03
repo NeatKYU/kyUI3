@@ -6,7 +6,7 @@
         @mouseleave="hoverOut"
     >
         <c-button @click="toggle" :right-icon="toggleIcon" :disabled="props.disabled">
-            dropdown
+            {{ title }}
         </c-button>
         <div class="c-dropdown-item-divider">
             <div v-if="isDropActive" @click="toggle" class="c-dropdown-item-wrapper">
@@ -25,10 +25,14 @@
     </div>
 </template>
 
-<script setup lang='ts' name="c-dropdown">
+<script setup lang='ts' name='c-dropdown'>
 import { defineProps, ref, computed } from 'vue'
 
 const props = defineProps({
+    title: {
+        type: String,
+        default: 'dropdown',
+    },
     dropdownList: [],
     dropdownCustomClass: {
         type: String,
