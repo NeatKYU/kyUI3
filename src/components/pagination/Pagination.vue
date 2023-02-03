@@ -1,33 +1,55 @@
 <template>
     <div class="c-pagination">
-        <c-button 
-            @click="prev" 
-            leftIcon="angle-left" 
-            :disabled="isStartDisable" 
-            :rounded="rounded"
-        />
+        <ButtonGroup>
+            <Button 
+                v-if="isEndButton"
+                @click="prevEnd" 
+                leftIcon="angles-left" 
+                :disabled="isStartDisable" 
+                :rounded="rounded"
+            />
+            <Button 
+                @click="prev" 
+                leftIcon="angle-left" 
+                :disabled="isStartDisable"
+                :rounded="rounded"
+            />
+        </ButtonGroup>
         <div class="flex">
-            <div 
-                v-for="page in sPageList"
-                @click="move(page)"
-                :key="page" 
-                class="c-pagination-item"
-                :class="paginationClass(page)"
-            >
-                {{ page }}
-            </div>
+            <ButtonGroup>
+                <div 
+                    v-for="page in sPageList"
+                    @click="move(page)"
+                    :key="page" 
+                    class="c-pagination-item"
+                    :class="paginationClass(page)"
+                >
+                    {{ page }}
+                </div>
+            </ButtonGroup>
         </div>
-        <c-button 
-            @click="next" 
-            rightIcon="angle-right" 
-            :disabled="isEndDisable" 
-            :rounded="rounded"
-        />
+        <ButtonGroup>
+            <Button 
+                @click="next" 
+                rightIcon="angle-right" 
+                :disabled="isEndDisable" 
+                :rounded="rounded"
+            />
+            <Button 
+                v-if="isEndButton"
+                @click="nextEnd" 
+                rightIcon="angles-right" 
+                :disabled="isEndDisable" 
+                :rounded="rounded"
+            />
+        </ButtonGroup>
     </div>
 </template>
 
 <script setup lang="ts" name="c-pagination">
 import { computed, onMounted, ref } from 'vue';
+import { ButtonGroup } from '../button-group/index';
+import { Button } from '../button/index';
 
 const emit = defineEmits(['changePage']);
 
@@ -37,10 +59,12 @@ const props = defineProps({
         default: 0,
         required: true,
     },
+    // 게시물 몇개씩 보여줄지
     perPage: {
         type:Number,
         default: 10,
     },
+    // 페이지네이션 버튼 개수 몇개 세팅 할건지
     showPage: {
         type: Number,
         default: 10,
@@ -53,11 +77,15 @@ const props = defineProps({
     rounded: {
         type: Boolean,
         default: false,
+    },
+    isEndButton: {
+        type: Boolean,
+        default: false,
     }
 })
 
 const sTotalPage = ref<number>(1);
-const sCurrentShowPage = ref<number>(1);
+// const sCurrentShowPage = ref<number>(1);
 const sCurrentPage = ref<number>(1);
 const sStartPage = ref<number>(1);
 const sEndPage = ref<number>(props.showPage);
@@ -117,6 +145,22 @@ const prev = () => {
     }
 }
 
+const nextEnd = () => {
+    sEndPage.value = sTotalPage.value;
+    sCurrentPage.value = sTotalPage.value;
+    sStartPage.value = sTotalPage.value - props.showPage;
+    updatePage(sCurrentPage.value);
+    setPageList(sStartPage.value, sEndPage.value);
+}
+
+const prevEnd = () => {
+    sStartPage.value = 1;
+    sCurrentPage.value = 1;
+    sEndPage.value = props.showPage;
+    updatePage(1);
+    setPageList(sStartPage.value, sEndPage.value);
+}
+
 onMounted(() => {
     sTotalPage.value = Math.ceil(props.totalCount / props.perPage) === 0 ? 1 : Math.ceil(props.totalCount / props.perPage);
     if(sTotalPage.value < props.showPage){
@@ -162,7 +206,7 @@ onMounted(() => {
     }
 
     &:hover {
-        border-color: $c-primary-hover-color;
+        background-color: $c-primary-hover-color;
     }
 }
 
