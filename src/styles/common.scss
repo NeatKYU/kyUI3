@@ -4,7 +4,7 @@ $c-strong-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 // color
 // primary
 $c-primary-color: #5e737d;
-$c-primary-hover-color: #4a5c64;
+$c-primary-hover-color: #b2bdc1;
 
 //success
 $c-success-color: #198754;
@@ -45,4 +45,37 @@ $c-rounded-border-radius: 20px;
 }
 .relative {
     position: relative;
+}
+
+.c-common-button-group {
+
+    button,
+    span,
+    div,
+    a {
+        border-radius: 0;
+    }
+
+    button:first-child:not(.is-rounded),
+    span:first-child:not(.is-rounded),
+    div:first-child:not(.is-rounded),
+    a:first-child:not(.is-rounded){
+        border-top-left-radius: $c-border-radius;
+        border-bottom-left-radius: $c-border-radius;
+    }
+
+    button:last-child:not(.is-rounded),
+    span:last-child:not(.is-rounded),
+    div:last-child:not(.is-rounded),
+    a:last-child:not(.is-rounded){
+        border-top-right-radius: $c-border-radius;
+        border-bottom-right-radius: $c-border-radius;
+    }
+
+    button:not(:last-child):not(.is-rounded),
+    span:not(:last-child):not(.is-rounded),
+    div:not(:last-child):not(.is-rounded),
+    a:not(:last-child):not(.is-rounded){
+        border-right: none;
+    }
 }

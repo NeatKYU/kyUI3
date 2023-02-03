@@ -164,7 +164,7 @@ const animateWave = (e: PointerEvent) => {
     border: 1px solid $c-default-border-color;
 
     &:hover {
-        border-color: $c-hover-border-color
+        background-color: $c-primary-hover-color;
     }
 
     cursor: pointer;

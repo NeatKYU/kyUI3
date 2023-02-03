@@ -7,24 +7,26 @@
         left-icon="align-justify"
         is-validate
       />
-      <c-button 
-        size="small"
-        label="label"
-        isIconButton
-        @click="clickButton"
-      />
-      <c-button 
-        label="label"
-        isIconButton
-        @click="clickButton"
-      />
-      <c-button 
-        size="large"
-        label="label"
-        isIconButton
-        animation
-        @click="clickButton"
-      />
+      <c-button-group>
+        <c-button 
+          size="small"
+          label="label"
+          isIconButton
+          @click="clickButton"
+        />
+        <c-button 
+          label="label"
+          isIconButton
+          @click="clickButton"
+        />
+        <c-button 
+          size="large"
+          label="label"
+          isIconButton
+          animation
+          @click="clickButton"
+        />
+      </c-button-group>
       <c-switch size="large"/>
       <c-tooltip text="왼쪽 툴팁입니다!" rounded>
           <span>left</span>
@@ -38,15 +40,10 @@
           :perPage=10
           :showPage=5
           :currentPage="currentPage"
+          isEndButton
       />
 
-      <c-dropdown>
-        <c-dropdown-item
-          v-for="(item,index) in dropdownList" 
-          :key="item+'-'+index"
-        >
-          {{ item }}
-        </c-dropdown-item>
+      <c-dropdown title="select" :dropdownList="dropdownList">
       </c-dropdown>
     </main>
 </template>
@@ -56,6 +53,7 @@ import { ref } from 'vue';
 
 const inputValue = ref('');
 const currentPage = ref(1);
+const selectDropdownItem = '';
 const dropdownList = ['dropdown test', 'korea', 'USA'];
 
 const clickButton = () => {
