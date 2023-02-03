@@ -104,7 +104,6 @@ const checkAnimation = computed(() => {
 })
 
 const animateWave = (e: PointerEvent) => {
-    console.log('animateWave')
     let el = cButton.value;
     if (el) {
         let div = document.createElement('div');
