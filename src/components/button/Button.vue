@@ -5,7 +5,7 @@
         class="c-button"
         :class="[ type, classes ]"
         v-bind="$attrs"
-        @click="animateWave"
+        @click="checkAnimation"
     >
         <c-icon v-if="leftIcon && !isIconButton" :icon="leftIcon" />
         <span v-if="label && !isIconButton">{{ label }}</span>
@@ -65,6 +65,10 @@ const props = defineProps({
     icon: {
         type: String,
         default: 'star',
+    },
+    animation: {
+        type: Boolean,
+        default: false,
     }
 })
 interface waves {
@@ -95,7 +99,12 @@ const classes = computed(() => {
     }
 })
 
+const checkAnimation = computed(() => {
+    return props.animation ? animateWave : '';
+})
+
 const animateWave = (e: PointerEvent) => {
+    console.log('animateWave')
     let el = cButton.value;
     if (el) {
         let div = document.createElement('div');

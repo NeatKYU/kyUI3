@@ -22,6 +22,7 @@
         size="large"
         label="label"
         isIconButton
+        animation
         @click="clickButton"
       />
       <c-switch size="large"/>
