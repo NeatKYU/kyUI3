@@ -8,6 +8,7 @@ import { Switch } from './components/switch/index';
 import { Tooltip } from './components/tooltip/index';
 import { Tag } from './components/tag/index';
 import { Pagination } from './components/pagination/index';
+import { Dropdown, DropdownItem } from './components/dropdown/index';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -35,6 +36,12 @@ const components = [
     }, {
         name: 'c-pagination',
         value: Pagination
+    }, {
+        name: 'c-dropdown',
+        value: Dropdown
+    }, {
+        name: 'c-dropdown-item',
+        value: DropdownItem
     }
 ]
 
@@ -55,6 +62,8 @@ export {
     Tooltip,
     Tag,
     Pagination,
+    Dropdown,
+    DropdownItem,
 
     FontAwesomeIcon,
 }

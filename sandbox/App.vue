@@ -39,6 +39,15 @@
           :showPage=5
           :currentPage="currentPage"
       />
+
+      <c-dropdown>
+        <c-dropdown-item
+          v-for="(item,index) in dropdownList" 
+          :key="item+'-'+index"
+        >
+          {{ item }}
+        </c-dropdown-item>
+      </c-dropdown>
     </main>
 </template>
   
@@ -47,6 +56,7 @@ import { ref } from 'vue';
 
 const inputValue = ref('');
 const currentPage = ref(1);
+const dropdownList = ['dropdown test', 'korea', 'USA'];
 
 const clickButton = () => {
   console.log('click!')
