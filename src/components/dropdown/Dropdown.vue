@@ -35,7 +35,10 @@ const props = defineProps({
         type: String,
         default: 'dropdown',
     },
-    dropdownList: [],
+    dropdownList: {
+        type: Object,
+        default: [],
+    },
     dropdownCustomClass: {
         type: String,
         default: '',

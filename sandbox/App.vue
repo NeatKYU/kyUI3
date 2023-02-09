@@ -49,6 +49,10 @@
       <c-avatar>
         <img src="../assets/img/logo.png"/>
       </c-avatar>
+
+      <c-datepicker>
+        
+      </c-datepicker>
     </main>
 </template>
   
