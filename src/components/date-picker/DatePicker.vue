@@ -21,8 +21,13 @@
                 </div>
             </div>
             <div v-else-if="isYear && !isMonth" class="body-content year">
-                <div v-for="year in currentYearList" @click="() => {changeCurrentYear(year)}">
-                    {{ year }}
+                <div>
+                    <Button 
+                        v-for="year in currentYearList" 
+                        @click="() => {changeCurrentYear(year)}" 
+                        full outlined
+                        :label="year"
+                    />
                 </div>
             </div>
             <div v-else class="body-content month">
@@ -200,15 +205,17 @@ onMounted(() => {
         .year {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            /* align-items: center; */
             overflow-y: scroll;
-
-            div {
-                width: 100%;
-            }
-            div:hover {
-                background-color: $c-primary-hover-color;
-            }
+        }
+        
+        .year::-webkit-scrollbar {
+            width: 4px;
+        }
+        .year::-webkit-scrollbar-thumb {
+            height: 30%;
+            border-radius: 20px;
+            background-color: $c-default-border-color;
         }
 
         .month {
