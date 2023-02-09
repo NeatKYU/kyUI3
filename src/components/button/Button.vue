@@ -70,6 +70,14 @@ const props = defineProps({
     animation: {
         type: Boolean,
         default: false,
+    },
+    full: {
+        type: Boolean,
+        default: false,
+    },
+    outlined: {
+        type: Boolean,
+        default: false,
     }
 })
 interface waves {
@@ -97,6 +105,8 @@ const classes = computed(() => {
         'is-rounded': props.rounded,
         'is-disabled': props.disabled,
         'is-icon-button': props.isIconButton,
+        'is-full': props.full,
+        'is-outlined': props.outlined,
     }
 })
 
@@ -169,6 +179,14 @@ const animateWave = (e: PointerEvent) => {
     }
 
     cursor: pointer;
+
+    &.is-full {
+        width: 100% !important;
+    }
+
+    &.is-outlined {
+        border: none;
+    }
 
     &.is-primary {
         background-color: $c-primary-color;
