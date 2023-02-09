@@ -1,12 +1,12 @@
 <template>
     <div class="c-datepicker">
         <div class="header">
-            <Button isIconButton icon="angle-left"/>
+            <Button isIconButton icon="angle-left" @click="prevMonth"/>
             <ButtonGroup>
                 <Button :label="currentYear.toString()" @click="() => { openYear(currentYear) }"/>
                 <Button :label="currentMonth.toString()" @click="openMonth"/>
             </ButtonGroup>
-            <Button isIconButton icon="angle-right"/>
+            <Button isIconButton icon="angle-right" @click="nextMonth"/>
         </div>
         <div class="body">
             <div class="day-wrapper">
@@ -125,6 +125,24 @@ const openYear = (year: number) => {
 const changeCurrentYear = (year: string) => {
     currentYear.value = parseInt(year);
     isYear.value = false;
+}
+
+const nextMonth = () => {
+    if (currentMonth.value === 12) {
+        currentMonth.value = 1;
+        currentYear.value++;
+    } else {
+        currentMonth.value++;
+    }
+}
+
+const prevMonth = () => {
+    if (currentMonth.value === 1) {
+        currentMonth.value = 12;
+        currentYear.value--;
+    } else {
+        currentMonth.value--;
+    }
 }
 
 onMounted(() => {
