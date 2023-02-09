@@ -1,5 +1,5 @@
 <template>
-    <div class="c-datepicker">
+    <div class="c-datepicker" :style="{width: props.width+'px', height: props.height+'px'}">
         <div class="header">
             <Button isIconButton icon="angle-left" @click="prevMonth"/>
             <ButtonGroup>
@@ -43,9 +43,8 @@
 </template>
 
 <script setup lang="ts" name="c-datepicker">
-import { computed, defineEmits, defineProps, onMounted, ref, watch } from 'vue'
+import { defineProps, onMounted, ref, watch } from 'vue'
 import { Button } from '../button/index'
-import { Dropdown, DropdownItem } from '../dropdown/index'
 import { ButtonGroup } from '../button-group';
 
 const props = defineProps({
@@ -55,7 +54,7 @@ const props = defineProps({
     },
     height: {
         type: Number,
-        default: 400,
+        default: 300,
     }
 })
 
@@ -63,7 +62,7 @@ const monthList = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'
 const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const currentYear = ref<number>(new Date().getFullYear());
 const currentMonth = ref<number>(new Date().getMonth() + 1);
-const currentDay = ref<number>(new Date().getDate());
+// const currentDay = ref<number>(new Date().getDate());
 const isMonth = ref<boolean>(false);
 const isYear = ref<boolean>(false);
 const currentYearList = ref<string[]>([]);
@@ -133,6 +132,8 @@ const changeCurrentYear = (year: string) => {
 }
 
 const nextMonth = () => {
+    isYear.value = false;
+    isMonth.value = false;
     if (currentMonth.value === 12) {
         currentMonth.value = 1;
         currentYear.value++;
@@ -142,6 +143,8 @@ const nextMonth = () => {
 }
 
 const prevMonth = () => {
+    isYear.value = false;
+    isMonth.value = false;
     if (currentMonth.value === 1) {
         currentMonth.value = 12;
         currentYear.value--;
@@ -159,8 +162,6 @@ onMounted(() => {
 @import '../../styles/common.scss';
 
 .c-datepicker {
-    width: 300px;
-    height: 300px;
 
     border-radius: 10px;
     box-shadow: $c-strong-box-shadow;
@@ -208,7 +209,7 @@ onMounted(() => {
             /* align-items: center; */
             overflow-y: scroll;
         }
-        
+
         .year::-webkit-scrollbar {
             width: 4px;
         }
