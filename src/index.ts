@@ -12,6 +12,7 @@ import { Dropdown, DropdownItem } from './components/dropdown/index';
 import { ButtonGroup } from './components/button-group/index';
 import { Avatar } from './components/avatar/index';
 import { DatePicker } from './components/date-picker/index';
+import { Spinner } from './components/spinner/index';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -54,6 +55,9 @@ const components = [
     }, {
         name: 'c-datepicker',
         value: DatePicker
+    }, {
+        name: 'c-spinner',
+        value: Spinner
     }
 ]
 
@@ -79,6 +83,7 @@ export {
     ButtonGroup,
     Avatar,
     DatePicker,
+    Spinner,
 
     FontAwesomeIcon,
 }

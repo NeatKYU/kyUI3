@@ -53,6 +53,7 @@
       <c-datepicker>
         
       </c-datepicker>
+      <c-spinner></c-spinner>
     </main>
 </template>
   
