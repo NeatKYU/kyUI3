@@ -1,5 +1,5 @@
 <template>
-    <div class="c-spinner">
+    <div class="c-spinner" :class="[classes]">
         <div class="inner"></div>
         <div class="progress">
             <div class="center"></div>
@@ -8,7 +8,26 @@
 </template>
 
 <script setup lang="ts" name="c-spinner">
-import { computed, ref } from 'vue';
+import { defineProps, computed, ref } from 'vue';
+
+const props = defineProps({
+    color: {
+        type: String,
+        default: 'black'
+    },
+    size: {
+        type: String,
+        default: 'medium'
+    }
+})
+
+const classes = computed(() => {
+    return {
+        'is-small': props.size === 'small',
+        'is-large': props.size === 'large',
+    }
+})
+
 </script>
 
 <style lang="scss" scoped>
@@ -16,19 +35,67 @@ import { computed, ref } from 'vue';
 $spinner-width: 35px;
 $spinner-height: 35px;
 
+$spinner-width-small: 25px;
+$spinner-height-small: 25px;
+
+$spinner-width-large: 45px;
+$spinner-height-large: 45px;
+
+
 $spinner-half-width: calc($spinner-width / 2);
-$spinner-half-height: calc($spinner-height / 2); 
+$spinner-half-height: calc($spinner-height / 2);
 .c-spinner {
     width: $spinner-width;
     height: $spinner-width;
-
+    
     background-color: darkgray;
     border-radius: 50%;
-
+    
     padding: 5px;
-
+    
     position: relative;
+    &.is-small {
+        padding: 3px;
+        width: $spinner-width-small;
+        height: $spinner-height-small;
+        .inner {
+            width: calc($spinner-width-small - (3px * 2));
+            height: calc($spinner-height-small - (3px * 2));
+        }
+        .progress {
+            width: calc($spinner-width-small / 2);
+            height: calc($spinner-height-small / 2);
 
+            padding: 3px 0 0 3px;
+            .center {
+                width: calc($spinner-width-small - (4px * 2));
+                height: calc(($spinner-height-small / 4) + 4px);
+            }
+        }
+    }
+
+    &.is-large {
+        padding: 7px;
+
+        width: $spinner-width-large;
+        height: $spinner-height-large;
+
+        .inner {
+            width: calc($spinner-width-large - (7px * 2));
+            height: calc($spinner-height-large - (7px * 2));
+        }
+        .progress {
+            width: calc($spinner-width-large / 2);
+            height: calc($spinner-height-large / 2);
+
+            padding: 7px 0 0 7px;
+            .center {
+                width: calc($spinner-width-large - (8px * 2));
+                height: calc(($spinner-height-large / 4) + 5px);
+            }
+        }
+    }
+    
     .inner {
         width: calc($spinner-width - (5px * 2));
         height: calc($spinner-height - (5px * 2));

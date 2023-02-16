@@ -22,6 +22,7 @@ import { computed, ref } from 'vue';
 import { Icon } from '../icon/index';
 import config from '../../utils/config';
 
+
 /**
  * type: 
  * label: 버튼 내용

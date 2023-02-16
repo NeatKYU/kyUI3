@@ -53,7 +53,9 @@
       <c-datepicker>
         
       </c-datepicker>
-      <c-spinner></c-spinner>
+      <c-spinner size="small"></c-spinner>
+      <c-spinner ></c-spinner>
+      <c-spinner size="large"></c-spinner>
     </main>
 </template>
   
