@@ -1,14 +1,14 @@
 <template>
     <div class="c-spinner" :class="[classes]" :style="{backgroundColor: props.progressColor}">
         <div class="inner"></div>
-        <div class="progress" :style="{backgroundColor: props.color}">
+        <div class="progress" :style="{backgroundColor: props.color, animationDuration: props.speed}">
             <div class="center"></div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts" name="c-spinner">
-import { defineProps, computed, ref } from 'vue';
+import { defineProps, computed } from 'vue';
 
 const props = defineProps({
     color: {
@@ -22,6 +22,10 @@ const props = defineProps({
     size: {
         type: String,
         default: 'medium'
+    },
+    speed: {
+        type: String,
+        default: 1
     }
 })
 
