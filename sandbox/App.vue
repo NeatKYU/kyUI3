@@ -53,8 +53,8 @@
       <c-datepicker>
         
       </c-datepicker>
-      <c-spinner size="small"></c-spinner>
-      <c-spinner ></c-spinner>
+      <c-spinner size="small" color="blue"></c-spinner>
+      <c-spinner color="blue" progressColor="#d1d1d1"></c-spinner>
       <c-spinner size="large"></c-spinner>
     </main>
 </template>

@@ -1,7 +1,7 @@
 <template>
-    <div class="c-spinner" :class="[classes]">
+    <div class="c-spinner" :class="[classes]" :style="{backgroundColor: props.progressColor}">
         <div class="inner"></div>
-        <div class="progress">
+        <div class="progress" :style="{backgroundColor: props.color}">
             <div class="center"></div>
         </div>
     </div>
@@ -14,6 +14,10 @@ const props = defineProps({
     color: {
         type: String,
         default: 'black'
+    },
+    progressColor: {
+        type: String,
+        default: '#d1d1d1',
     },
     size: {
         type: String,
@@ -48,7 +52,7 @@ $spinner-half-height: calc($spinner-height / 2);
     width: $spinner-width;
     height: $spinner-width;
     
-    background-color: darkgray;
+    /* background-color: darkgray; */
     border-radius: 50%;
     
     padding: 5px;
@@ -110,7 +114,7 @@ $spinner-half-height: calc($spinner-height / 2);
         width: $spinner-half-width;
         height: $spinner-half-height;
 
-        background-color: black;
+        /* background-color: black; */
         border-radius: 100px 0 0 0;
 
         animation: spin 1s linear infinite;
