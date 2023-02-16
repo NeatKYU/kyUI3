@@ -5,19 +5,19 @@
         @mouseenter="hoverIn" 
         @mouseleave="hoverOut"
     >
-        <c-button @click="toggle" :right-icon="toggleIcon" :disabled="props.disabled">
+        <Button @click="toggle" :right-icon="toggleIcon" :disabled="props.disabled">
             {{ title }}
-        </c-button>
+        </Button>
         <div class="c-dropdown-item-divider">
             <div v-if="isDropActive" @click="toggle" class="c-dropdown-item-wrapper">
                 <template v-if="dropdownList">
-                    <c-dropdown-item 
+                    <DropdownItem 
                         v-for="(item,index) in dropdownList" 
                         :key="item+'-'+index"
                         :class="itemCustomClass"
                     >
                         {{ item }}
-                    </c-dropdown-item>
+                    </DropdownItem>
                 </template>
                 <slot v-else/>
             </div>
@@ -27,13 +27,18 @@
 
 <script setup lang='ts' name='c-dropdown'>
 import { defineProps, ref, computed } from 'vue'
+import { DropdownItem } from './index';
+import { Button } from '../button/index';
 
 const props = defineProps({
     title: {
         type: String,
         default: 'dropdown',
     },
-    dropdownList: [],
+    dropdownList: {
+        type: Object,
+        default: [],
+    },
     dropdownCustomClass: {
         type: String,
         default: '',

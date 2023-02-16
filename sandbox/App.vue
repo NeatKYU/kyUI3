@@ -45,6 +45,17 @@
 
       <c-dropdown title="select" :dropdownList="dropdownList">
       </c-dropdown>
+
+      <c-avatar>
+        <img src="../assets/img/logo.png"/>
+      </c-avatar>
+
+      <c-datepicker>
+        
+      </c-datepicker>
+      <c-spinner size="small" color="blue"></c-spinner>
+      <c-spinner color="blue" progressColor="#d1d1d1"></c-spinner>
+      <c-spinner size="large" speed="2s"></c-spinner>
     </main>
 </template>
   

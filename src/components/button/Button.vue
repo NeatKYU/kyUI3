@@ -7,19 +7,21 @@
         v-bind="$attrs"
         @click="checkAnimation"
     >
-        <c-icon v-if="leftIcon && !isIconButton" :icon="leftIcon" />
+        <Icon v-if="leftIcon && !isIconButton" :icon="leftIcon" />
         <span v-if="label && !isIconButton">{{ label }}</span>
         <span v-else-if="$slots.default">
             <slot />
         </span>
-        <c-icon v-if="rightIcon && !isIconButton" :icon="rightIcon"/>
-        <c-icon v-if="isIconButton" :icon="icon" :size="size"/>
+        <Icon v-if="rightIcon && !isIconButton" :icon="rightIcon"/>
+        <Icon v-if="isIconButton" :icon="icon" :size="size"/>
     </component>
 </template>
 
 <script setup lang="ts" name="c-button">
 import { computed, ref } from 'vue';
+import { Icon } from '../icon/index';
 import config from '../../utils/config';
+
 
 /**
  * type: 
@@ -69,6 +71,14 @@ const props = defineProps({
     animation: {
         type: Boolean,
         default: false,
+    },
+    full: {
+        type: Boolean,
+        default: false,
+    },
+    outlined: {
+        type: Boolean,
+        default: false,
     }
 })
 interface waves {
@@ -96,6 +106,8 @@ const classes = computed(() => {
         'is-rounded': props.rounded,
         'is-disabled': props.disabled,
         'is-icon-button': props.isIconButton,
+        'is-full': props.full,
+        'is-outlined': props.outlined,
     }
 })
 
@@ -168,6 +180,14 @@ const animateWave = (e: PointerEvent) => {
     }
 
     cursor: pointer;
+
+    &.is-full {
+        width: 100% !important;
+    }
+
+    &.is-outlined {
+        border: none;
+    }
 
     &.is-primary {
         background-color: $c-primary-color;

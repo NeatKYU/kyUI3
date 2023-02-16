@@ -10,6 +10,9 @@ import { Tag } from './components/tag/index';
 import { Pagination } from './components/pagination/index';
 import { Dropdown, DropdownItem } from './components/dropdown/index';
 import { ButtonGroup } from './components/button-group/index';
+import { Avatar } from './components/avatar/index';
+import { DatePicker } from './components/date-picker/index';
+import { Spinner } from './components/spinner/index';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -46,6 +49,15 @@ const components = [
     }, {
         name: 'c-button-group',
         value: ButtonGroup
+    }, {
+        name: 'c-avatar',
+        value: Avatar
+    }, {
+        name: 'c-datepicker',
+        value: DatePicker
+    }, {
+        name: 'c-spinner',
+        value: Spinner
     }
 ]
 
@@ -69,6 +81,9 @@ export {
     Dropdown,
     DropdownItem,
     ButtonGroup,
+    Avatar,
+    DatePicker,
+    Spinner,
 
     FontAwesomeIcon,
 }
