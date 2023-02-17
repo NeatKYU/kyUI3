@@ -1,5 +1,6 @@
 <template>
     <div class="c-datepicker" :style="{width: props.width+'px', height: props.height+'px'}">
+        <input :value="modelValue" class="hide"/>
         <div class="header">
             <Button isIconButton icon="angle-left" @click="prevMonth"/>
             <ButtonGroup>
@@ -16,7 +17,14 @@
             </div>
             <div v-if="!isYear && !isMonth" class="body-content day">
                 <div v-for="day in currentDayList">
-                    <Button v-if="day !== ''" size="small">{{ day }}</Button>
+                    <Button 
+                        v-if="day !== ''" 
+                        size="small" animation
+                        :class="[checkDayforButtonEffect(parseInt(day))]"
+                        @click="setCurrentDay(currentYear, currentMonth, parseInt(day))"
+                    >
+                        {{ day }}
+                    </Button>
                     <div v-else/>
                 </div>
             </div>
@@ -43,11 +51,12 @@
 </template>
 
 <script setup lang="ts" name="c-datepicker">
-import { defineProps, onMounted, ref, watch } from 'vue'
+import { defineProps, onMounted, ref, watch, defineEmits } from 'vue'
 import { Button } from '../button/index'
 import { ButtonGroup } from '../button-group';
 
 const props = defineProps({
+    modelValue: String,
     width: {
         type: Number,
         default: 300,
@@ -58,13 +67,22 @@ const props = defineProps({
     }
 })
 
+const emit = defineEmits(['update:modelValue']);
+
 const monthList = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'] as string[];
 const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const currentYear = ref<number>(new Date().getFullYear());
 const currentMonth = ref<number>(new Date().getMonth() + 1);
-// const currentDay = ref<number>(new Date().getDate());
+const currentDay = ref<number>(new Date().getDate());
+
+// user select value 관리용
+const selectYear = ref<number>(new Date().getFullYear());
+const selectMonth = ref<number>(new Date().getMonth() + 1);
+const selectDay = ref<number>(new Date().getDate());
+
 const isMonth = ref<boolean>(false);
 const isYear = ref<boolean>(false);
+
 const currentYearList = ref<string[]>([]);
 const currentDayList = ref<string[]>([]);
 
@@ -74,6 +92,26 @@ watch(
         currentDayList.value = getDayList(currentYear.value, currentMonth.value);
     }
 )
+
+const checkDayforButtonEffect = (day: number) => {
+    return {
+        'is-selected': selectDay.value === day && selectMonth.value === currentMonth.value && selectYear.value === currentYear.value,
+    }
+}
+
+const setCurrentDay = (year: number, month: number, day: number) => {
+    selectYear.value = year;
+    selectMonth.value = month;
+    selectDay.value = day;
+
+    const date = year + '-' + month + '-' + day;
+
+    updateInputValue(date);
+}
+
+const updateInputValue = (date: string) => {
+    emit('update:modelValue', date);
+}
 
 /**
  * 년도 리스트를 생성하는 함수 현재 기준으로 앞뒤로 백년씩 계산
@@ -250,6 +288,14 @@ onMounted(() => {
         background-color: black;
         width: 100%;
         height: 15%;
+    }
+
+    .is-selected {
+        background-color: $c-primary-color;
+    }
+
+    .hide {
+        display: none;
     }
 }
 

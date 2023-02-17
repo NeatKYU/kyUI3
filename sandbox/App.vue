@@ -50,9 +50,10 @@
         <img src="../assets/img/logo.png"/>
       </c-avatar>
 
-      <c-datepicker>
+      <c-datepicker v-model="dateValue">
         
       </c-datepicker>
+      <div>date picker value = {{ dateValue }}</div>
       <c-spinner size="small" color="blue"></c-spinner>
       <c-spinner color="blue" progressColor="#d1d1d1"></c-spinner>
       <c-spinner size="large" speed="2s"></c-spinner>
@@ -66,6 +67,7 @@ const inputValue = ref('');
 const currentPage = ref(1);
 const selectDropdownItem = '';
 const dropdownList = ['dropdown test', 'korea', 'USA'];
+const dateValue = ref<string>(new Date().toString());
 
 const clickButton = () => {
   console.log('click!')
