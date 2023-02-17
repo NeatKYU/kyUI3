@@ -58,6 +58,7 @@ $spinner-half-height: calc($spinner-height / 2);
     
     /* background-color: darkgray; */
     border-radius: 50%;
+    display: inline-block;
     
     padding: 5px;
     
