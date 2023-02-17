@@ -16,11 +16,15 @@
                 </div>
             </div>
             <div v-if="!isYear && !isMonth" class="body-content day">
-                <div v-for="day in currentDayList">
+                <div v-for="day, index in currentDayList">
                     <Button 
                         v-if="day !== ''" 
                         size="small" animation
-                        :class="[checkDayforButtonEffect(parseInt(day))]"
+                        :class="[
+                            checkSelectedButton(parseInt(day)), 
+                            dayColorClasses(index), 
+                            toDayClasses(parseInt(day))
+                        ]"
                         @click="setCurrentDay(currentYear, currentMonth, parseInt(day))"
                     >
                         {{ day }}
@@ -92,13 +96,37 @@ watch(
         currentDayList.value = getDayList(currentYear.value, currentMonth.value);
     }
 )
+const toDayClasses = (day: number) => {
+    const date = new Date();
+    const toDayYear = date.getFullYear();
+    const toDayMonth = date.getMonth() + 1;
+    const toDayDay = date.getDate();
 
-const checkDayforButtonEffect = (day: number) => {
+    return {
+        'today': toDayYear === currentYear.value && toDayMonth === currentMonth.value && toDayDay === day,
+    }
+}
+
+const dayColorClasses = (index: number) => {
+    const dayOfWeekIndex = index % 7;
+    return {
+        'red-day': dayList[dayOfWeekIndex] === dayList[0],
+        'blue-day': dayList[dayOfWeekIndex] === dayList[dayList.length - 1],
+    }
+}
+
+const checkSelectedButton = (day: number) => {
     return {
         'is-selected': selectDay.value === day && selectMonth.value === currentMonth.value && selectYear.value === currentYear.value,
     }
 }
-
+/**
+ * 날짜를 선택했을 때 value 세팅 및 v-model 업데이트
+ * checkSelectedButton의 스타일을 주기위해 값 업데이트
+ * @param year 선택 기준 날짜
+ * @param month 선택 기준 날짜
+ * @param day 선택 기준 날짜
+ */
 const setCurrentDay = (year: number, month: number, day: number) => {
     selectYear.value = year;
     selectMonth.value = month;
@@ -109,6 +137,10 @@ const setCurrentDay = (year: number, month: number, day: number) => {
     updateInputValue(date);
 }
 
+/**
+ * 부모에서 내려온 v-model값 update해주는 함수
+ * @param date 선택한 날짜 ( 초기값은 오늘 )
+ */
 const updateInputValue = (date: string) => {
     emit('update:modelValue', date);
 }
@@ -290,8 +322,22 @@ onMounted(() => {
         height: 15%;
     }
 
+    .today {
+        border: 2px solid black;
+        background-color: rgb(202, 202, 202);
+    }
+
     .is-selected {
         background-color: $c-primary-color;
+        color: white !important;
+    }
+
+    .red-day {
+        color: rgb(255, 125, 125);
+    }
+
+    .blue-day {
+        color: rgb(84, 84, 207);
     }
 
     .hide {
