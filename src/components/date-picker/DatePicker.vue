@@ -10,7 +10,7 @@
             <Button isIconButton icon="angle-right" @click="nextMonth"/>
         </div>
         <div class="body">
-            <div class="day-wrapper">
+            <div v-if="!isMonth && !isYear" class="day-wrapper">
                 <div v-for="(dayWeek, index) in dayList">
                     <span :key="index">{{ dayWeek }}</span>
                 </div>
@@ -43,8 +43,12 @@
                 </div>
             </div>
             <div v-else class="body-content month">
-                <div v-for="month in monthList" @click="() => {changeMonth(month)}">
-                    <Button :label="month"/>
+                <div v-for="month, index in monthList" @click="() => {changeMonth(month)}">
+                    <Button 
+                        :label="month" 
+                        outlined
+                        :primary="currentMonthClasses(index)"
+                    />
                 </div>
             </div>
         </div>
@@ -73,7 +77,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
-const monthList = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'] as string[];
+const monthList = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'] as string[];
 const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const currentYear = ref<number>(new Date().getFullYear());
 const currentMonth = ref<number>(new Date().getMonth() + 1);
@@ -120,6 +124,11 @@ const checkSelectedButton = (day: number) => {
         'is-selected': selectDay.value === day && selectMonth.value === currentMonth.value && selectYear.value === currentYear.value,
     }
 }
+
+const currentMonthClasses = (index: number) => {
+    return monthList[index] === monthList[currentMonth.value - 1];
+}
+
 /**
  * 날짜를 선택했을 때 value 세팅 및 v-model 업데이트
  * checkSelectedButton의 스타일을 주기위해 값 업데이트
@@ -186,7 +195,8 @@ const openMonth = () => {
 }
 
 const changeMonth = (month: string) => {
-    currentMonth.value = parseInt(month);
+    const findMonth = monthList.findIndex((item) => item === month)
+    currentMonth.value = findMonth + 1;
     isMonth.value = false;
 }
 
@@ -232,16 +242,17 @@ onMounted(() => {
 @import '../../styles/common.scss';
 
 .c-datepicker {
-
     border-radius: 10px;
     box-shadow: $c-strong-box-shadow;
     padding: 10px 5px;
+    display: inline-block;
     
     .header {
         width: 100%;
         height: 15%;
 
         padding: 0px 10px;
+        margin-bottom: 10px;
 
         display: flex;
         justify-content: space-between;
@@ -278,6 +289,8 @@ onMounted(() => {
             flex-direction: column;
             /* align-items: center; */
             overflow-y: scroll;
+
+            margin-top: 10px;
         }
 
         .year::-webkit-scrollbar {
@@ -295,9 +308,15 @@ onMounted(() => {
             align-items: center;
             flex-wrap: wrap;
 
-            gap: 9px;
+            div {
+                width: 33.333%;
 
-            padding: 3px 10px;
+                button {
+                    width: 100%;
+                }
+            }
+
+            margin: 10px 0;
         }
 
         .day-wrapper {
