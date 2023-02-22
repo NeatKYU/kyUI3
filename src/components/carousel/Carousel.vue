@@ -62,14 +62,12 @@ const move = (dir: 'left' | 'right') => {
             } else {
                 currentIndex.value--;
             }
-            // console.log('move left', currentIndex.value)
         } else {
             if (currentIndex.value === props.imageSrcList.length-1) {
                 currentIndex.value = 0;
             } else {
                 currentIndex.value++;
             }
-            // console.log('move right', currentIndex.value, props.imageSrcList.length)
         }
         track.value.style.transform = `translateX(-${currentIndex.value * 100}%)`;
     }
