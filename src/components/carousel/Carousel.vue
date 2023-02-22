@@ -14,10 +14,16 @@
         />
         <div class="c-carousel" :style="{width: props.width+'px', height: props.height+'px'}">
             <div class="flexbox" ref="track">
-                <div v-for="item in props.imageSrcList" className="img" :style="{backgroundImage: `url(${item})`}"/>
+                <div v-for="item in props.imageSrcList" className="img" :key="item" :style="{backgroundImage: `url(${item})`}"/>
             </div>
             <div class="dot-wrapper">
-
+                <div 
+                    v-for="item, index in props.imageSrcList" 
+                    :key="item" 
+                    class="dot"
+                    :class="[index === currentIndex ? 'active' : '']"
+                    @click="() => moveDirect(index)"
+                />
             </div>
         </div>
     </div>
@@ -56,15 +62,22 @@ const move = (dir: 'left' | 'right') => {
             } else {
                 currentIndex.value--;
             }
-            console.log('move left', currentIndex.value)
+            // console.log('move left', currentIndex.value)
         } else {
             if (currentIndex.value === props.imageSrcList.length-1) {
                 currentIndex.value = 0;
             } else {
                 currentIndex.value++;
             }
-            console.log('move right', currentIndex.value, props.imageSrcList.length)
+            // console.log('move right', currentIndex.value, props.imageSrcList.length)
         }
+        track.value.style.transform = `translateX(-${currentIndex.value * 100}%)`;
+    }
+}
+
+const moveDirect = (index: number) => {
+    currentIndex.value = index;
+    if (track.value) {
         track.value.style.transform = `translateX(-${currentIndex.value * 100}%)`;
     }
 }
@@ -110,10 +123,38 @@ const move = (dir: 'left' | 'right') => {
         justify-content: center;
         align-items: center;
 
+        gap: 10px;
+
         background-color: gray;
         position: absolute;
         bottom: 0;
         left: 0;
+
+        /* &:hover {
+            background-color: gray;
+        }
+
+        transition: 0.5s; */
+
+        .dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 100%;
+
+            background-color: #efefef;
+
+            cursor: pointer;
+
+            &:hover {
+                background-color: red;
+            }
+
+            transition: 0.5s;
+        }
+
+        .active {
+            background-color: red;
+        }
     }
 }
 
