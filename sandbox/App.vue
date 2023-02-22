@@ -57,6 +57,8 @@
       <c-spinner size="small" color="blue"></c-spinner>
       <c-spinner color="blue" progressColor="#d1d1d1"></c-spinner>
       <c-spinner size="large" speed="2s"></c-spinner>
+
+      <c-carousel :width="500" :imageSrcList="imageSrcList"></c-carousel>
     </main>
 </template>
   
@@ -67,6 +69,7 @@ const inputValue = ref('');
 const currentPage = ref(1);
 const selectDropdownItem = '';
 const dropdownList = ['dropdown test', 'korea', 'USA'];
+const imageSrcList = ['https://fakeimg.pl/250', 'https://fakeimg.pl/200', 'https://fakeimg.pl/300']
 const dateValue = ref<string>(new Date().toString());
 
 const clickButton = () => {

@@ -13,6 +13,7 @@ import { ButtonGroup } from './components/button-group/index';
 import { Avatar } from './components/avatar/index';
 import { DatePicker } from './components/date-picker/index';
 import { Spinner } from './components/spinner/index';
+import { Carousel } from './components/carousel/index'
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -58,6 +59,9 @@ const components = [
     }, {
         name: 'c-spinner',
         value: Spinner
+    }, {
+        name: 'c-carousel',
+        value: Carousel
     }
 ]
 
@@ -84,6 +88,7 @@ export {
     Avatar,
     DatePicker,
     Spinner,
+    Carousel,
 
     FontAwesomeIcon,
 }
