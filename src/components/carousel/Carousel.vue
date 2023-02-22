@@ -97,6 +97,8 @@ const moveDirect = (index: number) => {
         top: 50%;
         transform: translate(-50%, -50%);
         z-index: 99;
+
+        color: white;
     }
     .left-button {
         left: 40px;
