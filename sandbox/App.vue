@@ -57,6 +57,9 @@
       <c-spinner size="small" color="blue"></c-spinner>
       <c-spinner color="blue" progressColor="#d1d1d1"></c-spinner>
       <c-spinner size="large" speed="2s"></c-spinner>
+      <c-spinner size="small" speed="1s"></c-spinner>
+      <c-spinner size="large" speed="3s"></c-spinner>
+      <c-spinner size="large" speed="4s"></c-spinner>
 
       <c-carousel :width="300" :imageSrcList="imageSrcList"></c-carousel>
     </main>
