@@ -24,3 +24,5 @@ app.component('your-want-tag-name', ComponentName);
 // in any vue file use like this
 <your-want-tag-name/>
 ```
+
+Code reivew test
