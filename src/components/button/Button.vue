@@ -153,7 +153,7 @@ const animateWave = (e: PointerEvent) => {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/common.scss';
+@import '@/styles/common.scss';
 
 .c-button {
     width: auto;

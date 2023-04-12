@@ -12,4 +12,13 @@ const preview: Preview = {
   },
 };
 
+import { setup } from '@storybook/vue3';
+import { Button } from '../src/components/button/index';
+import '../src/styles/common.scss';
+import './storybook.scss';
+
+setup((app) => {
+  app.component(Button.name, Button);
+})
+
 export default preview;
