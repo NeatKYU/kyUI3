@@ -24,3 +24,11 @@ app.component('your-want-tag-name', ComponentName);
 // in any vue file use like this
 <your-want-tag-name/>
 ```
+
+### Show Storybook Doc Page
+```
+git clone https://github.com/NeatKYU/kyUI3.git
+cd kyUI3
+npm install
+npm run storybook
+```

@@ -6,6 +6,12 @@ export default defineConfig({
   // If our .vue files have a style, it will be compiled as a single `.css` file under /dist.
   plugins: [Vue({ style: { filename: 'style.css' } })],
 
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+    }
+  },
+
   build: {
     // Output compiled files to /dist.
     outDir: './dist',

@@ -19,8 +19,8 @@
 
 <script setup lang="ts" name="c-button">
 import { computed, ref } from 'vue';
-import { Icon } from '../icon/index';
-import config from '../../utils/config';
+import { Icon } from '@/components/icon/index';
+import config from '@/utils/config';
 
 
 /**
@@ -153,7 +153,7 @@ const animateWave = (e: PointerEvent) => {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/common.scss';
+@import '@/styles/common.scss';
 
 .c-button {
     width: auto;
