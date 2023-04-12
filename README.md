@@ -25,7 +25,10 @@ app.component('your-want-tag-name', ComponentName);
 <your-want-tag-name/>
 ```
 
-### Doc Page
+### Show Storybook Doc Page
 ```
+git clone https://github.com/NeatKYU/kyUI3.git
+cd kyUI3
+npm install
 npm run storybook
 ```
