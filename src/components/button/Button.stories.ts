@@ -58,6 +58,8 @@ const meta = {
         leftIcon: {
             description: '버튼 왼쪽 아이콘',
             defaultValue: '',
+            control: 'select',
+            options: ['star', 'angle-left'],
             table: {
                 category: 'Icon',
             },
@@ -65,6 +67,8 @@ const meta = {
         rightIcon: {
             description: '버튼 오른쪽 아이콘',
             defaultValue: '',
+            control: 'select',
+            options: ['star', 'angle-right'],
             table: {
                 category: 'Icon',
             },
@@ -116,6 +120,7 @@ export const Default: Story = {
         animation: false,
         full: false,
         outlined: false,
+        isIconButton: false,
     },
 };
 
@@ -126,7 +131,7 @@ export const SizeButton: Story = {
             return { args };
         },
         template: 
-        `<div class='size-button-group'>
+        `<div class='button-group'>
             <Button v-bind="args" size="small"></Button>
             <Button v-bind="args"></Button>
             <Button v-bind="args" size="large"></Button>
@@ -145,3 +150,41 @@ export const FullMode: Story = {
         full: true,
     },
 };
+
+export const IconButton: Story = {
+    render: (args) => ({
+        components: { Button },
+        setup() {
+            return { args };
+        },
+        template: 
+        `<div class='button-group'>
+            <Button v-bind='args' leftIcon='angle-left'></Button>
+            <Button v-bind='args' rightIcon='angle-right'></Button>
+            <Button v-bind='args' isIconButton icon='star'></Button>
+        </div>`
+    }),
+    args: {
+        primary: true,
+        label: 'Icon',
+        leftIcon: '',
+        rightIcon: '',
+        isIconButton: false,
+        icon: '',
+    }
+}
+
+export const OutlineButton: Story = {
+    args: {
+        label: 'Outlined',
+        outlined: true,
+    }
+}
+
+export const RoundButton: Story = {
+    args: {
+        primay: true,
+        label: 'Rounded',
+        rounded: true,
+    }
+}
