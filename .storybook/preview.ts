@@ -12,13 +12,17 @@ const preview: Preview = {
   },
 };
 
+// font setting
+import '../src/fontawesome/index';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+// css setting
 import { setup } from '@storybook/vue3';
-import { Button } from '../src/components/button/index';
 import '../src/styles/common.scss';
 import './storybook.scss';
 
 setup((app) => {
-  app.component(Button.name, Button);
+  app.component('f-icon', FontAwesomeIcon)
 })
 
 export default preview;
