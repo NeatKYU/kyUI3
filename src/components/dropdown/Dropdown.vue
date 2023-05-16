@@ -24,10 +24,6 @@ import { useOutsideClick } from '@/utils/useOutsideClick';
 const dropdownRef = ref<any>();
 
 const props = defineProps({
-    title: {
-        type: String,
-        default: 'dropdown',
-    },
     dropdownCustomClass: {
         type: String,
         default: '',
@@ -36,22 +32,12 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
-    disabled: {
-        type: Boolean,
-        default: false,
-    },
-    selected: {
-        type: Boolean,
-        default: false,
-    },
 })
 
 const isDropActive = ref<boolean>(false);
 
 const toggle = () => {
-    if (!props.disabled) {
-        isDropActive.value = !isDropActive.value;
-    }
+    isDropActive.value = !isDropActive.value;
 }
 
 const closePoper = () => {
@@ -59,15 +45,11 @@ const closePoper = () => {
 }
 
 const hoverIn = () => {
-    if (props.hovered && !props.disabled) {
-        isDropActive.value = true;
-    }
+    if (props.hovered) isDropActive.value = true;
 }
 
 const hoverOut = () => {
-    if (props.hovered && !props.disabled) {
-        isDropActive.value = false;
-    }
+    if (props.hovered) isDropActive.value = false;
 }
 useOutsideClick(dropdownRef, closePoper);
 </script>
