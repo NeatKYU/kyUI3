@@ -4,90 +4,54 @@
         :class="dropdownCustomClass"
         @mouseenter="hoverIn" 
         @mouseleave="hoverOut"
+        ref="dropdownRef"
     >
-        <Button @click="toggle" :right-icon="toggleIcon" :disabled="props.disabled">
-            {{ title }}
-        </Button>
+        <div @click="toggle">
+            <slot name="trigger"/>
+        </div>
         <div class="c-dropdown-item-divider">
-            <div v-if="isDropActive" @click="toggle" class="c-dropdown-item-wrapper">
-                <template v-if="dropdownList">
-                    <DropdownItem 
-                        v-for="(item,index) in dropdownList" 
-                        :key="item+'-'+index"
-                        :class="itemCustomClass"
-                    >
-                        {{ item }}
-                    </DropdownItem>
-                </template>
-                <slot v-else/>
+            <div v-if="isDropActive" class="c-dropdown-item-wrapper" @click="closePoper">
+                <slot name="item"/>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang='ts' name='c-dropdown'>
-import { defineProps, ref, computed } from 'vue'
-import { DropdownItem } from './index';
-import { Button } from '../button/index';
+import { defineProps, ref } from 'vue'
+import { useOutsideClick } from '@/utils/useOutsideClick';
+
+const dropdownRef = ref<any>();
 
 const props = defineProps({
-    title: {
-        type: String,
-        default: 'dropdown',
-    },
-    dropdownList: {
-        type: Object,
-        default: [],
-    },
     dropdownCustomClass: {
         type: String,
         default: '',
-    },
-    itemCustomClass: {
-        type: String,
-        default: ''
     },
     hovered: {
         type: Boolean,
         default: false,
     },
-    disabled: {
-        type: Boolean,
-        default: false,
-    },
-    downIcon: {
-        type: String,
-        default: 'caret-down',
-    },
-    upIcon: {
-        type: String,
-        default: 'caret-up',
-    },
 })
 
 const isDropActive = ref<boolean>(false);
 
-const toggleIcon = computed(() => {
-    return isDropActive.value ? props.upIcon : props.downIcon;
-})
-
 const toggle = () => {
-    if (!props.disabled) {
-        isDropActive.value = !isDropActive.value;
-    }
+    isDropActive.value = !isDropActive.value;
+}
+
+const closePoper = () => {
+    isDropActive.value = false;
 }
 
 const hoverIn = () => {
-    if (props.hovered && !props.disabled) {
-        isDropActive.value = true;
-    }
+    if (props.hovered) isDropActive.value = true;
 }
 
 const hoverOut = () => {
-    if (props.hovered && !props.disabled) {
-        isDropActive.value = false;
-    }
+    if (props.hovered) isDropActive.value = false;
 }
+useOutsideClick(dropdownRef, closePoper);
 </script>
 
 <style lang="scss" scoped>
@@ -105,7 +69,7 @@ const hoverOut = () => {
 
     position: absolute;
     top: 40px;
-    left: 3px;
+    left: 0;
 
     z-index: 10;
 }
@@ -118,6 +82,10 @@ const hoverOut = () => {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    padding: 5px 10px;
+
+    border-radius: $c-border-radius;
+    border: 1px solid $c-default-border-color;
 
     background-color: $c-white-color;
 

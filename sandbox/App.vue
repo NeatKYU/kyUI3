@@ -43,7 +43,23 @@
           isEndButton
       />
 
-      <c-dropdown title="select" :dropdownList="dropdownList">
+      <c-dropdown>
+        <template #trigger>
+          <c-button right-icon="caret-down">
+            select
+          </c-button>
+        </template>
+        <template #item>
+          <c-dropdown-item icon="star" @click="clickButton">
+            test1
+          </c-dropdown-item>
+          <c-dropdown-item>
+            test2
+          </c-dropdown-item>
+          <c-dropdown-item>
+            test3
+          </c-dropdown-item>
+        </template>
       </c-dropdown>
 
       <c-avatar>
