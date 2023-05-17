@@ -10,7 +10,12 @@
             <slot name="trigger"/>
         </div>
         <div class="c-dropdown-item-divider">
-            <div ref="itemRef" class="c-dropdown-item-wrapper" :class="[isDropActive ? 'scale-up' : 'scale-down']" @click="closePoper">
+            <div 
+                ref="itemRef" 
+                class="c-dropdown-item-wrapper" 
+                :class="[isDropActive ? 'scale-up' : 'scale-down']" 
+                @click="closePoper"
+            >
                 <slot name="item"/>
             </div>
         </div>
@@ -38,18 +43,6 @@ const props = defineProps({
 const isDropActive = ref<boolean>(false);
 
 const toggle = () => {
-    // if (itemRef.value && !isDropActive.value) {
-    //     itemRef.value.style.width = 'auto';
-    //     itemRef.value.style.height = 'auto';
-    //     itemRef.value.style.padding = '5px 10px';
-    //     itemRef.value.style.border = '1px solid rgb(202, 202, 202)';
-    // } 
-    // if (itemRef.value && isDropActive.value) {
-    //     itemRef.value.style.width = '0px';
-    //     itemRef.value.style.height = '0px';
-    //     itemRef.value.style.padding = '0px';
-    //     itemRef.value.style.border = 'none';
-    // }
     isDropActive.value = !isDropActive.value;
 }
 
