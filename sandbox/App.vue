@@ -43,6 +43,14 @@
           isEndButton
       />
 
+      <c-avatar-group>
+        <c-avatar src="../assets/img/logo.png"/>
+        <c-avatar shadow src="../assets/img/logo.png"/>
+        <c-avatar shadow src="../assets/img/logo.png"/>
+        <c-avatar shadow src="../assets/img/logo.png"/>
+        <c-avatar shadow src="../assets/img/logo.png"/>
+      </c-avatar-group>
+
       <c-dropdown>
         <template #trigger>
           <c-button right-icon="caret-down">
@@ -61,9 +69,6 @@
           </c-dropdown-item>
         </template>
       </c-dropdown>
-
-      <c-avatar src="../assets/img/logo.png"/>
-      <c-avatar shadow src="../assets/img/logo.png"/>
 
       <c-datepicker v-model="dateValue">
         
