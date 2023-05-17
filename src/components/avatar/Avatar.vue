@@ -1,13 +1,19 @@
 <template>
   <div class="c-avatar" :class="[classes]">
-    <slot></slot>
+    <img :src="src"/>
   </div>
 </template>
 
 <script setup lang="ts" name="c-avatar">
 import { defineProps, computed } from 'vue'
 
+//TODO group avatar 추가
+
 const props = defineProps({
+    src: {
+        type: String,
+        default: '',
+    },
     rounded: {
         type: Boolean,
         default: true,
@@ -15,6 +21,10 @@ const props = defineProps({
     size: {
         type: String,
         default: 'medium',
+    },
+    shadow: {
+        type: Boolean,
+        default: false,
     }
 })
 
@@ -24,6 +34,7 @@ const classes = computed(() => {
         'is-small': props.size === 'small',
         'is-medium': props.size === 'medium',
         'is-large': props.size === 'large',
+        'is-shadow': props.shadow,
     }
 })
 </script>
@@ -44,6 +55,8 @@ const classes = computed(() => {
     border-radius: 5px;
     border: 1px solid $c-default-border-color;
 
+    background-color: $c-primary-color;
+
     &.is-rounded {
         border-radius: 50%;
     }
@@ -56,6 +69,10 @@ const classes = computed(() => {
     &.is-large {
         width: 50px;
         height: 50px;
+    }
+
+    &.is-shadow {
+        box-shadow: $c-strong-box-shadow;
     }
 
     img {

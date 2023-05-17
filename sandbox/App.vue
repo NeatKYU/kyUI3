@@ -62,9 +62,8 @@
         </template>
       </c-dropdown>
 
-      <c-avatar>
-        <img src="../assets/img/logo.png"/>
-      </c-avatar>
+      <c-avatar src="../assets/img/logo.png"/>
+      <c-avatar shadow src="../assets/img/logo.png"/>
 
       <c-datepicker v-model="dateValue">
         
