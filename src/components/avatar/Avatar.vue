@@ -1,6 +1,7 @@
 <template>
   <div class="c-avatar" :class="[classes]">
-    <img :src="src"/>
+    <img v-if="src" :src="src"/>
+    <slot v-else/>
   </div>
 </template>
 
@@ -64,11 +65,13 @@ const classes = computed(() => {
     &.is-small {
         width: 30px;
         height: 30px;
+        font-size: 12px;
     }
 
     &.is-large {
         width: 50px;
         height: 50px;
+        font-size: 20px;
     }
 
     &.is-shadow {
