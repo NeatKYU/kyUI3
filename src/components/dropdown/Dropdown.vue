@@ -10,7 +10,12 @@
             <slot name="trigger"/>
         </div>
         <div class="c-dropdown-item-divider">
-            <div v-if="isDropActive" class="c-dropdown-item-wrapper" @click="closePoper">
+            <div 
+                ref="itemRef" 
+                class="c-dropdown-item-wrapper" 
+                :class="[isDropActive ? 'scale-up' : 'scale-down']" 
+                @click="closePoper"
+            >
                 <slot name="item"/>
             </div>
         </div>
@@ -22,6 +27,7 @@ import { defineProps, ref } from 'vue'
 import { useOutsideClick } from '@/utils/useOutsideClick';
 
 const dropdownRef = ref<any>();
+const itemRef = ref<HTMLDivElement>();
 
 const props = defineProps({
     dropdownCustomClass: {
@@ -64,7 +70,7 @@ useOutsideClick(dropdownRef, closePoper);
     position: relative;
 }
 .c-dropdown-item-divider {
-    width: 100%;
+    /* width: 100%; */
     padding-top: 5px;
 
     position: absolute;
@@ -82,13 +88,23 @@ useOutsideClick(dropdownRef, closePoper);
     display: flex;
     flex-direction: column;
     gap: 5px;
+    overflow: hidden;
     padding: 5px 10px;
 
     border-radius: $c-border-radius;
     border: 1px solid $c-default-border-color;
+    
+    transition: all 0.15s;
+    transform-origin: top left;
 
     background-color: $c-white-color;
 
     box-shadow: $c-box-shadow;
+}
+.scale-up {
+    transform: scale(1);
+}
+.scale-down {
+    transform: scale(0);
 }
 </style>

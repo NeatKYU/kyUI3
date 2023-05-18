@@ -43,21 +43,21 @@ export const Default: Story = {
     parameters: {
         docs: {
             source: {
-                code: `<Dropdown>
+                code: `<c-dropdown>
     <template v-slot:trigger>
-        <Button right-icon='caret-down'>
+        <c-button right-icon='caret-down'>
             select
-        </Button>
+        </c-button>
     </template>
     <template v-slot:item>
-        <DropdownItem>
+        <c-dropdown-item>
             프로필
-        </DropdownItem>
-        <DropdownItem>
+        </c-dropdown-item>
+        <c-dropdown-item>
             로그아웃
-        </DropdownItem>
+        </c-dropdown-item>
     </template>
-</Dropdown>`
+</c-dropdown>`
             }
         }
     },
@@ -98,21 +98,21 @@ export const HoverdDropdown: Story = {
     parameters: {
         docs: {
             source: {
-                code: `<Dropdown hovered>
+                code: `<c-dropdown hovered>
     <template v-slot:trigger>
-        <Button right-icon='caret-down'>
+        <c-button right-icon='caret-down'>
             select
-        </Button>
+        </c-button>
     </template>
     <template v-slot:item>
-        <DropdownItem>
+        <c-dropdown-item>
             프로필
-        </DropdownItem>
-        <DropdownItem>
+        </c-dropdown-item>
+        <c-dropdown-item>
             로그아웃
-        </DropdownItem>
+        </c-dropdown-item>
     </template>
-</Dropdown>`
+</c-dropdown>`
             }
         }
     },
