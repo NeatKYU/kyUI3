@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import Avatar from '@/components/avatar/Avatar.vue';
+import AvatarGroup from '@/components/avatar/AvatarGroup.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 const meta = {
@@ -124,5 +125,96 @@ export const Size: Story = {
         rounded: true,
         size: 'medium',
         shadow: false,
+    },
+};
+
+export const initialAvatar: Story = {
+    parameters: {
+        docs: {
+            source: {
+                code: `
+<c-avatar size='small'>
+    <span>SK</span>
+</c-avatar>
+<c-avatar>
+    <span>SK</span>
+</c-avatar>
+<c-avatar size='large'>
+    <span>SK</span>
+</c-avatar>
+`
+            }
+        }
+    },
+    render: (args) => ({
+        components: {
+            Avatar,
+        },
+        setup() {
+            return { args };
+        },
+        template: `
+        <div :style="{display:'flex', gap: '1rem'}">
+            <Avatar v-bind="args" size='small'>
+                <span>SK</span>
+            </Avatar>
+            <Avatar v-bind="args">
+                <span>SK</span>
+            </Avatar>
+            <Avatar v-bind="args" size='large'>
+                <span>SK</span>
+            </Avatar>
+        </div>
+        `
+    }),
+    args: {
+        rounded: true,
+        size: 'medium',
+        shadow: false,
+    },
+};
+
+export const avatarGroup: Story = {
+    parameters: {
+        docs: {
+            source: {
+                code: `
+<c-avatar-group :max="5">
+    <c-avatar src="../assets/img/logo.png"/>
+    <c-avatar src="../assets/img/logo.png"/>
+    <c-avatar src="../assets/img/logo.png"/>
+    <c-avatar src="../assets/img/logo.png"/>
+    <c-avatar src="../assets/img/logo.png"/>
+    <c-avatar src="../assets/img/logo.png"/>
+    <c-avatar src="../assets/img/logo.png"/>
+</c-avatar-group>
+`
+            }
+        }
+    },
+    render: (args) => ({
+        components: {
+            Avatar,
+            AvatarGroup,
+        },
+        setup() {
+            return { args };
+        },
+        template: `
+        <AvatarGroup v-bind="args" :max="5">
+            <Avatar v-bind="args" src="../assets/img/logo.png"/>
+            <Avatar v-bind="args" src="../assets/img/logo.png"/>
+            <Avatar v-bind="args" src="../assets/img/logo.png"/>
+            <Avatar v-bind="args" src="../assets/img/logo.png"/>
+            <Avatar v-bind="args" src="../assets/img/logo.png"/>
+            <Avatar v-bind="args" src="../assets/img/logo.png"/>
+            <Avatar v-bind="args" src="../assets/img/logo.png"/>
+        </AvatarGroup>
+        `
+    }),
+    args: {
+        // rounded: true,
+        // size: 'medium',
+        // shadow: false,
     },
 };

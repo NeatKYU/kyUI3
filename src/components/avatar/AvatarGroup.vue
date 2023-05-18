@@ -2,15 +2,25 @@
     <div class="c-avatar-group" :class="[classes]" ref="slotRef">
         <template v-for="(child, index) in children" :key="index">
             <component
+                v-if="index+1 < max || children.length === max"
                 :is="child"
                 :style="{ 'margin-left': `${index !== 0 ? '-10px' : ''}`, 'z-index': `${children.length - index}` }"
             />
+            <Avatar
+                v-if="index+1 === max && children.length > max"
+                :style="{ 'margin-left': `${index !== 0 ? '-10px' : ''}`, 'z-index': `${children.length - index}` }"
+                :size="child.props.size"
+            >
+                +{{ (children.length - max) + 1 }}
+            </Avatar>
         </template>
     </div>
 </template>
 
 <script setup lang="ts" name="c-avatar-group">
 import { defineProps, computed, ref, onMounted, nextTick, reactive, useSlots } from 'vue'
+import Avatar from '@/components/avatar/Avatar.vue';
+
 const slotRef = ref<any>();
 const children = ref<any>([]);
 const slots = useSlots();
@@ -32,21 +42,6 @@ onMounted(async () => {
     if (!defaultSlot) return
     children.value = defaultSlot().map((vnode: any) => reactive(vnode))
 })
-
-// onMounted(() => {
-//     children.value = slots.default && slots.default().map((vnode: any) => {
-//         return {
-//             tag: vnode.type,
-//             props: {
-//                 ...vnode.props,
-//                 style: {
-//                     marginLeft: '-10px',
-//                 }
-//             },
-//             children: vnode.children
-//         }
-//     })
-// })
 </script>
 
 <style lang="scss">
@@ -54,9 +49,5 @@ onMounted(async () => {
 
 .c-avatar-group {
     display: flex;
-
-    /* div:not(:first-child) {
-        margin-left: -10px;
-    } */
 }
 </style>

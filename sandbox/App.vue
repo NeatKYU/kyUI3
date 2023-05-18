@@ -43,14 +43,20 @@
           isEndButton
       />
 
-      <c-avatar-group>
+      <c-avatar-group :max="3">
         <c-avatar src="../assets/img/logo.png"/>
         <c-avatar shadow src="../assets/img/logo.png"/>
         <c-avatar shadow src="../assets/img/logo.png"/>
-        <c-avatar shadow src="../assets/img/logo.png"/>
-        <c-avatar shadow src="../assets/img/logo.png"/>
       </c-avatar-group>
-
+      <c-avatar size="small">
+        <span>NPK</span>
+      </c-avatar>
+      <c-avatar size="medium">
+        <span>NPK</span>
+      </c-avatar>
+      <c-avatar size="large">
+        <span>NPK</span>
+      </c-avatar>
       <c-dropdown>
         <template #trigger>
           <c-button right-icon="caret-down">
