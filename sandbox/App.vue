@@ -67,6 +67,7 @@
           <c-dropdown-item icon="star" @click="clickButton">
             test1
           </c-dropdown-item>
+          <c-divider></c-divider>
           <c-dropdown-item>
             test2
           </c-dropdown-item>

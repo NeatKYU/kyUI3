@@ -14,6 +14,7 @@ import { Avatar, AvatarGroup } from './components/avatar/index';
 import { DatePicker } from './components/date-picker/index';
 import { Spinner } from './components/spinner/index';
 import { Carousel } from './components/carousel/index';
+import { Divider } from './components/divider/index';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -65,6 +66,9 @@ const components = [
     }, {
         name: 'c-carousel',
         value: Carousel
+    }, {
+        name: 'c-divider',
+        value: Divider
     }
 ]
 
@@ -93,6 +97,7 @@ export {
     DatePicker,
     Spinner,
     Carousel,
+    Divider,
 
     FontAwesomeIcon,
 }
