@@ -15,6 +15,7 @@ import { DatePicker } from './components/date-picker/index';
 import { Spinner } from './components/spinner/index';
 import { Carousel } from './components/carousel/index';
 import { Divider } from './components/divider/index';
+import { FloatingButton, FloatingItem } from './components/floating-button/index';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -69,6 +70,12 @@ const components = [
     }, {
         name: 'c-divider',
         value: Divider
+    }, {
+        name: 'c-floating-button',
+        value: FloatingButton,
+    }, {
+        name: 'c-floating-item',
+        value: FloatingItem,
     }
 ]
 
@@ -98,6 +105,8 @@ export {
     Spinner,
     Carousel,
     Divider,
+    FloatingButton,
+    FloatingItem,
 
     FontAwesomeIcon,
 }

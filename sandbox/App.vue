@@ -86,6 +86,18 @@
       <c-spinner size="large" speed="2s"></c-spinner>
 
       <c-carousel :width="300" :imageSrcList="imageSrcList"></c-carousel>
+
+      <c-floating-button>
+        <template #content>
+          <c-icon icon="pen-to-square"></c-icon>
+        </template>
+        <template #menu>
+          <c-floating-item @click="clickButton">hi</c-floating-item>
+          <c-floating-item>hi</c-floating-item>
+          <c-floating-item>hi</c-floating-item>
+          <c-floating-item>hi</c-floating-item>
+        </template>
+      </c-floating-button>
     </main>
 </template>
   
