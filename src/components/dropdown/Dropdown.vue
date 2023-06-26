@@ -9,11 +9,13 @@
         <div @click="toggle">
             <slot name="trigger"/>
         </div>
-        <div class="c-dropdown-item-divider">
+        <div 
+            class="c-dropdown-item-divider" 
+            :class="[isDropActive ? 'scale-up' : 'scale-down']"
+        >
             <div 
                 ref="itemRef" 
                 class="c-dropdown-item-wrapper" 
-                :class="[isDropActive ? 'scale-up' : 'scale-down']" 
                 @click="closePoper"
             >
                 <slot name="item"/>
@@ -78,6 +80,9 @@ useOutsideClick(dropdownRef, closePoper);
     left: 0;
 
     z-index: 10;
+
+    transition: all 0.15s;
+    transform-origin: top left;
 }
 
 .c-dropdown-item-wrapper {
@@ -93,9 +98,6 @@ useOutsideClick(dropdownRef, closePoper);
 
     border-radius: $c-border-radius;
     border: 1px solid $c-default-border-color;
-    
-    transition: all 0.15s;
-    transform-origin: top left;
 
     background-color: $c-white-color;
 
