@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts" name="c-avatar-group">
-import { defineProps, computed, ref, onMounted, nextTick, reactive, useSlots } from 'vue'
+import { computed, ref, onMounted, nextTick, reactive, useSlots } from 'vue'
 import Avatar from '@/components/avatar/Avatar.vue';
 
 const slotRef = ref<any>();

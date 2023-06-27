@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts" name="c-spinner">
-import { defineProps, computed } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps({
     color: {

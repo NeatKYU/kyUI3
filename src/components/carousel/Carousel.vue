@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts" name="c-carousel">
-import { defineProps, ref } from 'vue'
+import { ref } from 'vue'
 import Button from '../button/Button.vue'
 
 const props = defineProps({

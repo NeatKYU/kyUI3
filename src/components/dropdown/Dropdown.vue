@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang='ts' name='c-dropdown'>
-import { defineProps, ref } from 'vue'
+import { ref } from 'vue'
 import { useOutsideClick } from '@/utils/useOutsideClick';
 
 const dropdownRef = ref<any>();

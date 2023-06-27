@@ -6,7 +6,6 @@
 </template>
 
 <script setup lang='ts' name="c-dropdown-item">
-import { defineProps } from 'vue';
 import Icon from '@/components/icon/Icon.vue';
 
 const props = defineProps({

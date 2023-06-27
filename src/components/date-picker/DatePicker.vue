@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts" name="c-datepicker">
-import { defineProps, onMounted, ref, watch, defineEmits } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { Button } from '../button/index'
 import { ButtonGroup } from '../button-group';
 
