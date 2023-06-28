@@ -10,6 +10,7 @@
   "types": "dist/types/index.d.ts",
   "scripts": {
     "dev": "vite --host --port 3000",
+    "prebuild": "rimraf ./node_modules/@types/react",
     "build": "vite build && npm run build:types",
     "build:types": "vue-tsc --project tsconfig.types.json --declaration --emitDeclarationOnly --outDir dist/types ",
     "typecheck": "vue-tsc --project tsconfig.types.json --noEmit",

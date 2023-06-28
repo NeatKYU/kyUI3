@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts" name="c-avatar">
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 
 //TODO group avatar 추가
 

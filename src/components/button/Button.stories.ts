@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import Button from '@/components/button/Button.vue';
+import ButtonGroup from '@/components/button-group/ButtonGroup.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 const meta = {
@@ -125,6 +126,17 @@ export const Default: Story = {
 };
 
 export const SizeButton: Story = {
+    parameters: {
+        docs: {
+            source: {
+                code: `
+<c-button v-bind='args' size="small">Button</c-button>
+<c-button v-bind='args'>Button</c-button>
+<c-button v-bind='args' size="large">Button</c-button>
+`
+            }
+        }
+    },
     render: (args) => ({
         components: { Button },
         setup() {
@@ -144,6 +156,15 @@ export const SizeButton: Story = {
 };
 
 export const FullMode: Story = {
+    parameters: {
+        docs: {
+            source: {
+                code: `
+<c-button v-bind='args' full>Button</c-button>
+`
+            }
+        }
+    },
     args: {
         primary: true,
         label: 'Button',
@@ -152,6 +173,17 @@ export const FullMode: Story = {
 };
 
 export const IconButton: Story = {
+    parameters: {
+        docs: {
+            source: {
+                code: `
+<c-button v-bind='args' leftIcon='angle-left'>Icon</c-button>
+<c-button v-bind='args' rightIcon='angle-right'>Icon</c-button>
+<c-button v-bind='args' isIconButton icon='star'></c-button>
+`
+            }
+        }
+    },
     render: (args) => ({
         components: { Button },
         setup() {
@@ -175,6 +207,15 @@ export const IconButton: Story = {
 }
 
 export const OutlineButton: Story = {
+    parameters: {
+        docs: {
+            source: {
+                code: `
+<c-button outlined>Outlined</c-button>
+`
+            }
+        }
+    },
     args: {
         label: 'Outlined',
         outlined: true,
@@ -182,9 +223,48 @@ export const OutlineButton: Story = {
 }
 
 export const RoundButton: Story = {
+    parameters: {
+        docs: {
+            source: {
+                code: `
+<c-button rounded>Rounded</c-button>
+`
+            }
+        }
+    },
     args: {
         primay: true,
         label: 'Rounded',
         rounded: true,
+    }
+}
+
+export const Group: Story = {
+    parameters: {
+        docs: {
+            source: {
+                code: `
+<c-button-group>
+    <c-button>group1</c-button>
+    <c-button>group2</c-button>
+    <c-button>group3</c-button>
+</c-button-group>
+`
+            }
+        }
+    },
+    render: (args) => ({
+        components: { Button, ButtonGroup },
+        setup() {
+            return { args };
+        },
+        template: 
+        `<ButtonGroup>
+            <Button v-bind='args'>group1</Button>
+            <Button v-bind='args'>group2</Button>
+            <Button v-bind='args'>group3</Button>
+        </ButtonGroup>`
+    }),
+    args: {
     }
 }
