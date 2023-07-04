@@ -8,8 +8,6 @@
 <script setup lang="ts" name="c-avatar">
 import { computed } from 'vue'
 
-//TODO group avatar 추가
-
 const props = defineProps({
     src: {
         type: String,

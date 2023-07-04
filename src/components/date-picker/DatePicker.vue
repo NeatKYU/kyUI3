@@ -1,13 +1,18 @@
 <template>
-    <div class="c-datepicker" :style="{width: props.width+'px', height: props.height+'px'}">
+    <div class="c-datepicker" :style="{width: props.width+'px', height: props.height ? props.height+'px' : 'auto'}">
         <input :value="modelValue" class="hide"/>
         <div class="header">
-            <Button isIconButton icon="angle-left" @click="prevMonth"/>
-            <ButtonGroup>
-                <Button :label="currentYear.toString()" @click="() => { openYear(currentYear) }"/>
-                <Button :label="currentMonth.toString()" @click="openMonth"/>
-            </ButtonGroup>
-            <Button isIconButton icon="angle-right" @click="nextMonth"/>
+            <Button isIconButton outlined icon="angle-left" @click="prevMonth"/>
+            <div class="btn-group">
+                <div @click="() => openYear(currentYear)" class="btn">
+                    {{ currentYear.toString() }}{{ props.isKor ? '년' : '' }}
+                </div>
+                <div v-if="!props.isKor"> . </div>
+                <div @click="openMonth" class="btn">
+                    {{ currentMonth.toString() }}{{ props.isKor ? '월' : '' }}
+                </div>
+            </div>
+            <Button isIconButton outlined icon="angle-right" @click="nextMonth"/>
         </div>
         <div class="body">
             <div v-if="!isMonth && !isYear" class="day-wrapper">
@@ -19,7 +24,7 @@
                 <div v-for="day, index in currentDayList">
                     <Button 
                         v-if="day !== ''" 
-                        size="small" animation
+                        size="small" animation outlined
                         :class="[
                             checkSelectedButton(parseInt(day)), 
                             dayColorClasses(index), 
@@ -33,12 +38,11 @@
                 </div>
             </div>
             <div v-else-if="isYear && !isMonth" class="body-content year">
-                <div>
+                <div v-for="year, index in currentYearList" @click="() => {changeCurrentYear(year)}" >
                     <Button 
-                        v-for="year in currentYearList" 
-                        @click="() => {changeCurrentYear(year)}" 
                         full outlined
                         :label="year"
+                        :primary="currentYearClasses(index)"
                     />
                 </div>
             </div>
@@ -61,7 +65,6 @@
 <script setup lang="ts" name="c-datepicker">
 import { onMounted, ref, watch } from 'vue'
 import { Button } from '../button/index'
-import { ButtonGroup } from '../button-group';
 
 const props = defineProps({
     modelValue: String,
@@ -71,14 +74,17 @@ const props = defineProps({
     },
     height: {
         type: Number,
-        default: 300,
+    },
+    isKor: {
+        type: Boolean,
+        default: false,
     }
 })
 
 const emit = defineEmits(['update:modelValue']);
 
-const monthList = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'] as string[];
-const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const monthList = !props.isKor ? ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'] as string[] : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] as string[];
+const dayList = !props.isKor ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] : ['일', '월', '화', '수', '목', '금', '토'];
 const currentYear = ref<number>(new Date().getFullYear());
 const currentMonth = ref<number>(new Date().getMonth() + 1);
 const currentDay = ref<number>(new Date().getDate());
@@ -125,6 +131,10 @@ const checkSelectedButton = (day: number) => {
     }
 }
 
+const currentYearClasses = (index: number) => {
+    return currentYearList.value[index] === currentYear.value.toString();
+}
+
 const currentMonthClasses = (index: number) => {
     return monthList[index] === monthList[currentMonth.value - 1];
 }
@@ -161,7 +171,7 @@ const updateInputValue = (date: string) => {
  */
 const genYearList = (currentYear: string | number) => {
     let year: number;
-    const limitYear = 100;
+    const limitYear = 6;
     if (typeof currentYear === 'string') {
         year = parseInt(currentYear);
     } else {
@@ -257,6 +267,22 @@ onMounted(() => {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .btn {
+            height: 100%;
+            padding: 0 5px;
+            display: flex;
+            align-items: center;
+            border-radius: $c-border-radius;
+
+            cursor: pointer;
+        }
+        .btn-group {
+            display: flex;
+            align-items: center;
+
+            height: 100%;
+        }
     }
 
     .body {
@@ -286,21 +312,29 @@ onMounted(() => {
 
         .year {
             display: flex;
-            flex-direction: column;
-            /* align-items: center; */
-            overflow-y: scroll;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
 
-            margin-top: 10px;
+            div {
+                width: 33.333%;
+
+                button {
+                    width: 100%;
+                }
+            }
+
+            margin: 10px 0;
         }
 
-        .year::-webkit-scrollbar {
+        /* .year::-webkit-scrollbar {
             width: 4px;
         }
         .year::-webkit-scrollbar-thumb {
             height: 30%;
             border-radius: 20px;
             background-color: $c-default-border-color;
-        }
+        } */
 
         .month {
             display: flex;

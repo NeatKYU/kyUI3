@@ -5,12 +5,6 @@
 </template>
 
 <script setup lang="ts" name="c-button-group">
-// import { defineProps } from 'vue'
-// import { Button } from '../button/index'
-
-// const props = defineProps({
-
-// })
 </script>
 
 <style lang="scss" scoped>
