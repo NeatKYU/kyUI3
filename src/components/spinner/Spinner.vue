@@ -1,7 +1,7 @@
 <template>
     <div class="c-spinner" :class="[classes]">
         <div class="progress-track" :style="{borderColor:props.trackColor, animationDuration: props.speed}"/>
-        <div class="progress" :style="{borderColor:props.progressColor, animationDuration: props.speed}"/>
+        <!-- <div class="progress" :style="{borderColor:props.progressColor, animationDuration: props.speed}"/> -->
         <div class="progress-half" :style="{borderColor:props.progressColor, animationDuration: props.speed}"/>
     </div>
 </template>
