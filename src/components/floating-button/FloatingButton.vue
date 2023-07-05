@@ -1,8 +1,10 @@
 <template>
-    <div class="c-floating-button-wrapper" @mouseenter="hoverIn" @mouseleave="hoverOut">
-        <slot name="content"/>
-        <div class="c-floating-menu-wrapper" :style="{display: isOpen ? '' : 'none'}">
-            <div class="c-floating-menu">
+    <div class="c-floating-button-wrapper" :class="[shapeClasses]" ref="buttonRef" :style="{backgroundColor: props.color}">
+        <div class="c-floating-trigger" @click="onClick">
+            <slot/>
+        </div>
+        <div class="c-floating-menu-wrapper" @click="close" :style="{display: isOpen ? '' : 'none'}">
+            <div class="c-floating-menu" :class="[shapeClasses]">
                 <slot name="menu"/>
             </div>
         </div>
@@ -10,16 +12,31 @@
 </template>
 
 <script setup lang='ts' name='c-floating-button'>
-import { ref } from 'vue';
-import FloatingItem from './FloatingItem.vue'
+import { ref, computed } from 'vue';
+import { useOutsideClick } from '@/utils/useOutsideClick';
+interface FloatingProps {
+    color: string;
+    shape: 'circle' | 'square',
+}
+const props = defineProps<FloatingProps>()
 const isOpen = ref<boolean>(false);
+const buttonRef = ref<any>();
 
-const hoverIn = () => {
-    isOpen.value = true;
+const shapeClasses = computed(() => {
+    return {
+        'c-floating-square': props.shape === 'square',
+    }
+})
+
+const close = () => {
+    if (isOpen.value === true) {
+        isOpen.value = false;
+    }
 }
-const hoverOut = () => {
-    isOpen.value = false;
+const onClick = () => {
+    isOpen.value = !isOpen.value
 }
+useOutsideClick(buttonRef, close);
 </script>
 
 <style lang="scss" scoped>
@@ -39,7 +56,20 @@ const hoverOut = () => {
     border-radius: 50%;
     background-color: $c-primary-color;
 
+    box-shadow: $c-strong-box-shadow;
+
     cursor: pointer;
+
+    .c-floating-trigger {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        z-index: 99;
+    }
 }
 .c-floating-menu-wrapper {
     width: 100%;
@@ -62,15 +92,13 @@ const hoverOut = () => {
     bottom: 100%;
     left: 0;
 }
-.c-floating-menu-item {
-    width: 2rem;
-    height: 2rem;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-    background-color: $c-primary-color;
+</style>
+<style lang="scss">
+@import '../../styles/common.scss';
+.c-floating-square {
+    border-radius: $c-border-radius !important;
+    .c-floating-menu-item {
+        border-radius: $c-border-radius !important;
+    }
 }
 </style>
