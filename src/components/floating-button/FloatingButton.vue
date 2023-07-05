@@ -14,11 +14,10 @@
 <script setup lang='ts' name='c-floating-button'>
 import { ref, computed } from 'vue';
 import { useOutsideClick } from '@/utils/useOutsideClick';
-interface FloatingProps {
+const props = defineProps<{
     color: string;
-    shape: 'circle' | 'square',
-}
-const props = defineProps<FloatingProps>()
+    shape: 'circle' | 'square';
+}>()
 const isOpen = ref<boolean>(false);
 const buttonRef = ref<any>();
 
