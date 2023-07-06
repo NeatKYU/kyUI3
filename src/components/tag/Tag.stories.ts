@@ -18,18 +18,16 @@ const meta = {
             control: 'select',
             options: ['small', 'medium', 'large'],
         },
+        variant: {
+            description: '태그의 테마 색상',
+            defaultValue: 'primary',
+            control: 'select',
+            options: ['primary', 'success', 'danger'],
+        },
         rounded: {
             description: '둥근 태그',
             defaultValue: false,
         },
-        isPrimary: {
-            description: '태그 `primary` 색상으로 설정',
-            defaultValue: true,
-        },
-        isSuccess: {
-            description: '태그 `success` 색상으로 설정',
-            defaultValue: false,
-        }
     },
 } satisfies Meta<typeof Tag>;
 
@@ -112,8 +110,9 @@ export const Theme: Story = {
         docs: {
             source: {
                 code: `
-<c-tag v-bind='args' isPrimary/>
-<c-tag v-bind='args' isSuccess/>
+<c-tag v-bind='args'/>
+<c-tag v-bind='args' variant="success"/>
+<c-tag v-bind='args' variant="danger"/>
 `
             }
         }
@@ -125,8 +124,9 @@ export const Theme: Story = {
         },
         template: 
             `<div class="button-group">
-                <Tag v-bind="args" isPrimary></Tag>
-                <Tag v-bind="args" isSuccess></Tag>
+                <Tag v-bind="args"></Tag>
+                <Tag v-bind="args" variant="success"></Tag>
+                <Tag v-bind="args" variant="danger"></Tag>
             </div>`
     }),
     args: {

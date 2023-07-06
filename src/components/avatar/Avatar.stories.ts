@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 import Avatar from '@/components/avatar/Avatar.vue';
 import AvatarGroup from '@/components/avatar/AvatarGroup.vue';
 
+// image provider https://picsum.photos/
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 const meta = {
     title: 'kyUI3/Avatar',
