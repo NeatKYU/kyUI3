@@ -20,13 +20,13 @@ const props = defineProps({
     }
 })
 
-let on = ref<boolean>(false);
+const on = ref<boolean>(false);
 const ball = ref<HTMLDivElement>();
 
 const onoffClass = computed(() => {
     return {
-        'on': on,
-        'off': !on,
+        'on': on.value,
+        'off': !on.value,
     }
 })
 
@@ -40,70 +40,72 @@ const classes = computed(() => {
 const moveBall = () => {
     const el = ball.value;
     if (el) {
-        if(on.value){
+        if (on.value) {
             el.style.transform = 'translateX(0%)';
-            el.style.transition = 'transform .5s';
+            el.style.transition = 'transform .3s';
         } else {
             el.style.transform = 'translateX(100%)';
-            el.style.transition = 'transform .5s';
+            el.style.transition = 'transform .3s';
         }
     }
-    on.value = !on.value
+    on.value = !on.value;
     emit('change', on.value);
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../styles/common.scss';
+$ball-small-size: 20px;
+$ball-medium-size: 25px;
+$ball-large-size: 30px;
+
+$padding-size: 2.5px;
 
 .c-switch {
-    width: 50px;
-    height: 30px;
+    width: $ball-medium-size * 2 + $padding-size * 2;
+    height: $ball-medium-size + $padding-size * 2;
 
     display: inline-flex;
     align-items: center;
 
     cursor: pointer;
 
-    padding: 0 5px;
+    padding: 0px $padding-size;
 
     background-color: lightgray;
 
     border-radius: $c-rounded-border-radius;
+    transition: background-color 0.2s;
 
     .c-switch-ball {
-        width: 20px;
-        height: 20px;
+        width: $ball-medium-size;
+        height: $ball-medium-size;
         
         background-color: white;
     
-        border-radius: $c-rounded-border-radius;
+        border-radius: 100%;
     }
 
     &.is-small {
-        width: 40px;
-        height: 25px;
+        width: $ball-small-size * 2 + $padding-size * 2;
+        height: $ball-small-size + $padding-size * 2;
 
         .c-switch-ball {
-            width: 15px;
-            height: 15px;
+            width: $ball-small-size;
+            height: $ball-small-size;
         }
     }
 
     &.is-large {
-        width: 60px;
-        height: 35px;
+        width: $ball-large-size * 2 + $padding-size * 2;
+        height: $ball-large-size + $padding-size * 2;
         
-        padding: 0 8px;
-
         .c-switch-ball {
-            width: 23px;
-            height: 23px;
+            width: $ball-large-size;
+            height: $ball-large-size;
         }
     }
 }
-
-
 .on {
     background-color: $c-success-color;
 }

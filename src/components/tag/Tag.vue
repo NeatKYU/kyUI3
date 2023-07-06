@@ -10,33 +10,17 @@
 <script setup lang="ts" name="c-tag">
 import { computed } from 'vue'
 
-const props = defineProps({
-    textValue: {
-        type: String,
-        default: '',
-    },
-    isPrimary: {
-        type: Boolean,
-        default: true,
-    },
-    isSuccess: {
-        type: Boolean,
-        default: false,
-    },
-    size: {
-        type: String,
-        default: 'medium'
-    },
-    rounded: {
-        type: Boolean,
-        default: false,
-    },
-})
+const props = defineProps<{
+    textValue: '',
+	variant: 'primary' | 'success' | 'danger',
+	size: 'small' | 'medium' | 'large',
+    rounded: false,
+}>()
 
 const classes = computed(() => {
     return {
-        'is-primary': props.isPrimary,
-        'is-success': props.isSuccess,
+		'is-success': props.variant === 'success',
+		'is-danger': props.variant === 'danger',
         'is-rounded': props.rounded,
         'small': props.size === 'small',
         'large': props.size === 'large',
@@ -60,6 +44,9 @@ const classes = computed(() => {
 	height: 20px;
 	padding: 0 8px;
 
+	background-color: $c-primary-color;
+	color: $c-white-color;
+
 	&.small {
 		height: 15px;
 		padding: 0 7px;
@@ -73,15 +60,11 @@ const classes = computed(() => {
 
 		font-size: 14px;
 	}
-
-	&.is-primary {
-		background-color: $c-primary-color;
-		color: $c-white-color;
-	}
-
 	&.is-success {
 		background-color: $c-success-color;
-		color: $c-white-color;
+	}
+	&.is-danger {
+		background-color: $c-danger-color;
 	}
 
 	&.is-rounded {

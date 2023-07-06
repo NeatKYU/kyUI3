@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 import Avatar from '@/components/avatar/Avatar.vue';
 import AvatarGroup from '@/components/avatar/AvatarGroup.vue';
 
+// image provider https://picsum.photos/
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 const meta = {
     title: 'kyUI3/Avatar',
@@ -43,7 +44,7 @@ export const Default: Story = {
         docs: {
             source: {
                 code: `
-<c-avatar src="../assets/img/logo.png"/>
+<c-avatar src="https://picsum.photos/id/58/200/300"/>
 `
             }
         }
@@ -56,7 +57,7 @@ export const Default: Story = {
             return { args };
         },
         template: `
-            <Avatar v-bind="args" src="../assets/img/logo.png"/>
+            <Avatar v-bind="args" src="https://picsum.photos/id/58/200/300"/>
         `
     }),
     args: {
@@ -71,7 +72,7 @@ export const squareAvatar: Story = {
         docs: {
             source: {
                 code: `
-<c-avatar :rounded=false src="../assets/img/logo.png"/>
+<c-avatar :rounded=false src="https://picsum.photos/id/58/200/300"/>
 `
             }
         }
@@ -84,7 +85,7 @@ export const squareAvatar: Story = {
             return { args };
         },
         template: `
-            <Avatar v-bind="args" src="../assets/img/logo.png"/>
+            <Avatar v-bind="args" src="https://picsum.photos/id/58/200/300"/>
         `
     }),
     args: {
@@ -99,9 +100,9 @@ export const Size: Story = {
         docs: {
             source: {
                 code: `
-<c-avatar size='small' src='../assets/img/logo.png'/>
-<c-avatar size='medium' src='../assets/img/logo.png'/>
-<c-avatar size='large' src="../assets/img/logo.png"/>
+<c-avatar size='small' src='https://picsum.photos/id/1/200/300'/>
+<c-avatar size='medium' src='https://picsum.photos/id/1/200/300'/>
+<c-avatar size='large' src="https://picsum.photos/id/1/200/300"/>
 `
             }
         }
@@ -115,9 +116,9 @@ export const Size: Story = {
         },
         template: `
         <div :style="{display:'flex', gap: '1rem'}">
-            <Avatar v-bind="args" size='small' src="../assets/img/logo.png"/>
-            <Avatar v-bind="args" size='medium' src="../assets/img/logo.png"/>
-            <Avatar v-bind="args" size='large' src="../assets/img/logo.png"/>
+            <Avatar v-bind="args" size='small' src="https://picsum.photos/id/1/200/300"/>
+            <Avatar v-bind="args" size='medium' src="https://picsum.photos/id/1/200/300"/>
+            <Avatar v-bind="args" size='large' src="https://picsum.photos/id/1/200/300"/>
         </div>
         `
     }),
@@ -180,13 +181,13 @@ export const avatarGroup: Story = {
             source: {
                 code: `
 <c-avatar-group :max="5">
-    <c-avatar src="../assets/img/logo.png"/>
-    <c-avatar src="../assets/img/logo.png"/>
-    <c-avatar src="../assets/img/logo.png"/>
-    <c-avatar src="../assets/img/logo.png"/>
-    <c-avatar src="../assets/img/logo.png"/>
-    <c-avatar src="../assets/img/logo.png"/>
-    <c-avatar src="../assets/img/logo.png"/>
+    <c-avatar src="https://picsum.photos/id/1/200"/>
+    <c-avatar src="https://picsum.photos/id/2/200"/>
+    <c-avatar src="https://picsum.photos/id/3/200"/>
+    <c-avatar src="https://picsum.photos/id/4/200"/>
+    <c-avatar src="https://picsum.photos/id/5/200"/>
+    <c-avatar src="https://picsum.photos/id/6/200"/>
+    <c-avatar src="https://picsum.photos/id/7/200"/>
 </c-avatar-group>
 `
             }
@@ -202,13 +203,13 @@ export const avatarGroup: Story = {
         },
         template: `
         <AvatarGroup v-bind="args" :max="5">
-            <Avatar v-bind="args" src="../assets/img/logo.png"/>
-            <Avatar v-bind="args" src="../assets/img/logo.png"/>
-            <Avatar v-bind="args" src="../assets/img/logo.png"/>
-            <Avatar v-bind="args" src="../assets/img/logo.png"/>
-            <Avatar v-bind="args" src="../assets/img/logo.png"/>
-            <Avatar v-bind="args" src="../assets/img/logo.png"/>
-            <Avatar v-bind="args" src="../assets/img/logo.png"/>
+            <Avatar v-bind="args" src="https://picsum.photos/id/1/200"/>
+            <Avatar v-bind="args" src="https://picsum.photos/id/11/200"/>
+            <Avatar v-bind="args" src="https://picsum.photos/id/21/200"/>
+            <Avatar v-bind="args" src="https://picsum.photos/id/31/200"/>
+            <Avatar v-bind="args" src="https://picsum.photos/id/41/200"/>
+            <Avatar v-bind="args" src="https://picsum.photos/id/51/200"/>
+            <Avatar v-bind="args" src="https://picsum.photos/id/61/200"/>
         </AvatarGroup>
         `
     }),

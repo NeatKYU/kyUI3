@@ -1,9 +1,8 @@
 <template>
-    <div class="c-spinner" :class="[classes]" :style="{backgroundColor: props.progressColor}">
-        <div class="inner"></div>
-        <div class="progress" :style="{backgroundColor: props.color, animationDuration: props.speed}">
-            <div class="center"></div>
-        </div>
+    <div class="c-spinner" :class="[classes]">
+        <div class="progress-track" :style="{borderColor:props.trackColor, animationDuration: props.speed}"/>
+        <!-- <div class="progress" :style="{borderColor:props.progressColor, animationDuration: props.speed}"/> -->
+        <div class="progress-half" :style="{borderColor:props.progressColor, animationDuration: props.speed}"/>
     </div>
 </template>
 
@@ -11,13 +10,13 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-    color: {
+    trackColor: {
         type: String,
-        default: 'black'
+        default: '#c2c2c2',
     },
     progressColor: {
         type: String,
-        default: '#d1d1d1',
+        default: 'black',
     },
     size: {
         type: String,
@@ -52,91 +51,110 @@ $spinner-height-large: 45px;
 
 $spinner-half-width: calc($spinner-width / 2);
 $spinner-half-height: calc($spinner-height / 2);
+$spinner-half-width-small: calc($spinner-width-small / 2);
+$spinner-half-height-small: calc($spinner-height-small / 2);
+$spinner-half-width-large: calc($spinner-width-large / 2);
+$spinner-half-height-large: calc($spinner-height-large / 2);
+$spinner-border-width: 5px;
 .c-spinner {
     width: $spinner-width;
-    height: $spinner-width;
+    height: $spinner-height;
     
-    /* background-color: darkgray; */
     border-radius: 50%;
     display: inline-block;
     
-    padding: 5px;
-    
     position: relative;
+
     &.is-small {
-        padding: 3px;
         width: $spinner-width-small;
         height: $spinner-height-small;
-        .inner {
-            width: calc($spinner-width-small - (3px * 2));
-            height: calc($spinner-height-small - (3px * 2));
-        }
         .progress {
-            width: calc($spinner-width-small / 2);
-            height: calc($spinner-height-small / 2);
-
-            padding: 3px 0 0 3px;
-            .center {
-                width: calc($spinner-width-small - (4px * 2));
-                height: calc(($spinner-height-small / 4) + 4px);
-            }
+            width: $spinner-half-width-small;
+            height: $spinner-height-small;
+            border-width: calc($spinner-border-width - 1px);
+        }
+        .progress-half {
+            width: $spinner-half-width-small;
+            height: $spinner-half-height-small;
+            border-width: calc($spinner-border-width - 1px);
+        }
+        .progress-track {
+            width: $spinner-width-small;
+            height: $spinner-height-small;
+            border-width: calc($spinner-border-width - 1px);
         }
     }
 
     &.is-large {
-        padding: 7px;
-
         width: $spinner-width-large;
         height: $spinner-height-large;
-
-        .inner {
-            width: calc($spinner-width-large - (7px * 2));
-            height: calc($spinner-height-large - (7px * 2));
-        }
         .progress {
-            width: calc($spinner-width-large / 2);
-            height: calc($spinner-height-large / 2);
-
-            padding: 7px 0 0 7px;
-            .center {
-                width: calc($spinner-width-large - (8px * 2));
-                height: calc(($spinner-height-large / 4) + 5px);
-            }
+            width: $spinner-half-width-large;
+            height: $spinner-height-large;
+            border-width: calc($spinner-border-width + 1px);
+        }
+        .progress-half {
+            width: $spinner-half-width-large;
+            height: $spinner-half-height-large;
+            border-width: calc($spinner-border-width + 1px);
+        }
+        .progress-track {
+            width: $spinner-width-large;
+            height: $spinner-height-large;
+            border-width: calc($spinner-border-width + 1px);
         }
     }
-    
-    .inner {
-        width: calc($spinner-width - (5px * 2));
-        height: calc($spinner-height - (5px * 2));
-        background-color: white;
-        border-radius: 50%;
-    }
+
     .progress {
         position: absolute;
         top: 0;
         left: 0;
 
         width: $spinner-half-width;
-        height: $spinner-half-height;
+        height: $spinner-height;
 
-        /* background-color: black; */
-        border-radius: 100px 0 0 0;
+        background-color: transparent;
+        border-radius: 100% 0 0 100% / 50% 0 0 50%;
+        border: $spinner-border-width solid;
+        border-right: none;
+
+        -webkit-transform-origin: 100% 50%;
+        -ms-transform-origin: 100% 50%;
+        transform-origin: 100% 50%;
 
         animation: spin 1s linear infinite;
-        transform-origin: 100% 100%;
+    }
+    .progress-half {
+        position: absolute;
+        top: 0;
+        right: 0;
 
-        padding: 5px 5px 0 5px;
+        width: $spinner-half-width;
+        height: $spinner-half-height;
 
-        .center {
-            position: absolute;
+        background-color: transparent;
+        border-radius: 0 100% 0 0 / 0 100% 0 50%;
+        border: $spinner-border-width solid;
+        border-left: none;
+        border-bottom: none;
 
-            width: calc($spinner-width - (5px * 2));
-            height: calc(($spinner-half-height / 2) + 4px);
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
 
-            border-radius: 200px 200px 0 0;
+        animation: spin 1s linear infinite;
+    }
 
-            background-color: white;
-        }
+    .progress-track {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: $spinner-width;
+        height: $spinner-height;
+
+        border-radius: 100%;
+        border: $spinner-border-width solid;
     }
 }
 

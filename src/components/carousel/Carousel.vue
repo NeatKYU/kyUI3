@@ -1,12 +1,14 @@
 <template>
-    <div class="wrapper" :style="{width: (props.width + props.contentPadding*2)+'px'}">
+    <div class="wrapper" :style="{width: (props.width + (props.contentPadding*2))+'px'}">
         <Button 
+            v-if="showArrow"
             class="left-button" 
             rounded animation outlined isIconButton 
             icon="angle-left" 
             :onclick="() => move('left')"
         />
         <Button 
+            v-if="showArrow"
             class="right-button" 
             rounded animation outlined isIconButton 
             icon="angle-right" 
@@ -16,7 +18,7 @@
             <div class="flexbox" ref="track">
                 <div v-for="item in props.imageSrcList" className="img" :key="item" :style="{backgroundImage: `url(${item})`}"/>
             </div>
-            <div class="dot-wrapper">
+            <div v-if="showIndicator" class="dot-wrapper">
                 <div 
                     v-for="item, index in props.imageSrcList" 
                     :key="item" 
@@ -30,7 +32,7 @@
 </template>
 
 <script setup lang="ts" name="c-carousel">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import Button from '../button/Button.vue'
 
 const props = defineProps({
@@ -49,10 +51,30 @@ const props = defineProps({
     imageSrcList: {
         default: [] as string[]
     },
+    showIndicator: {
+        type: Boolean,
+        default: true,
+    },
+    showArrow: {
+        type: Boolean,
+        default: true,
+    },
+    autoPlay: {
+        type: Boolean,
+        default: false,
+    },
+    interval: {
+        type: Number,
+        default: 3,
+    }
 })
 
 const track = ref<HTMLDivElement>();
 const currentIndex = ref<number>(0);
+
+const mounted = onMounted(() => {
+    if (props.autoPlay) setInterval(() => move('right'), props.interval * 1000);
+})
 
 const move = (dir: 'left' | 'right') => {
     if (track.value) {
