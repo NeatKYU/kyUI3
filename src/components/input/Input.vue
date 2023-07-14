@@ -1,28 +1,32 @@
 <template>
-  <div
-      class="input-wrapper"
-      :class="[validateClasses, classes]"
-  >
-      <Icon v-if="leftIcon" :icon="leftIcon" class="c-input-icon"/>
-      <input 
-          v-if="type !== 'textarea'"
-          :value="modelValue"
-          @input="updateInputValue"
-          :placeholder="placeholder"
-          :type="type"
-          :disabled="disabled"
-          class="c-input"
-      >
-      <Icon v-if="rightIcon" :icon="rightIcon" class="c-input-icon"/>
+  <div class="input-overlay">
+    <label v-if="props.label" class="c-input-label">{{ props.label }}</label>
+    <div
+        class="input-wrapper"
+        :class="[validateClasses, classes]"
+    >
+        <Icon v-if="type !== 'textarea' && leftIcon" :icon="leftIcon" class="c-input-icon-left"/>
+        <input 
+            v-if="type !== 'textarea'"
+            :value="modelValue"
+            @input="updateInputValue"
+            :placeholder="placeholder"
+            :type="type"
+            :disabled="disabled"
+            class="c-input"
+        >
+        <Icon v-if="type !== 'textarea' && rightIcon" :icon="rightIcon" class="c-input-icon-right"/>
 
-      <textarea
-          v-if="type === 'textarea'"
-          :value="modelValue"
-          @input="updateInputValue"
-          :placeholder="placeholder"
-          :disabled="disabled"
-          class="c-textarea"
-      ></textarea>
+        <textarea
+            v-if="type === 'textarea'"
+            :value="modelValue"
+            @input="updateInputValue"
+            :placeholder="placeholder"
+            :disabled="disabled"
+            class="c-textarea"
+        ></textarea>
+    </div>
+    <div v-if="props.helperText" class="c-input-helper-text" :class="[validateClasses]">{{ props.helperText }}</div>
   </div>
 </template>
 
@@ -44,6 +48,14 @@ const props = defineProps({
         validator(value: string) {
             return ['text', 'textarea', 'email', 'phone'].includes(value)
         },
+    },
+    label: {
+        type: String,
+        default: '',
+    },
+    helperText: {
+        type: String,
+        default: '',
     },
     isValidate: {
         type: Boolean,
@@ -148,8 +160,13 @@ const checkValidate = (type: string, value: any) => {
 
   background-color: $c-white-color;
 
-  .c-input-icon {
-      padding: 5px;
+  .c-input-icon-left {
+      padding: 5px 0 5px 5px;
+      display: flex;
+      justify-content: center;
+  }
+  .c-input-icon-right {
+      padding: 5px 5px 5px 0;
       display: flex;
       justify-content: center;
   }
@@ -176,4 +193,23 @@ const checkValidate = (type: string, value: any) => {
       }
   }
 }
+
+.input-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    .c-input-label {
+        margin-bottom: 0.3rem;
+    }
+    .c-input-helper-text {
+        margin-top: 0.3rem;
+        &.is-success {
+            color: $c-success-color;
+        }
+        &.is-danger {
+            color: $c-danger-color;
+        }
+    }
+}
+
 </style>
