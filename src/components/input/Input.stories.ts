@@ -113,3 +113,24 @@ export const InputWithLabelAndHelperText: Story = {
         helperText: '헬퍼 텍스트 입니다.',
     },
 };
+
+export const Textarea: Story = {
+    render: (args) => ({
+        components: {
+            Input,
+        },
+        setup() {
+            const value = ref('');
+            return { args, value };
+        },
+        template: `
+            <Input v-bind="args" v-model="value"></Input>
+        `
+    }),
+    args: {
+        type: 'textarea',
+        placeholder: 'input',
+        isValidate: true,
+        disabled: false,
+    },
+};
