@@ -1,11 +1,11 @@
 <template>
-    <div 
+    <input 
+        :id="props.inputId"
+        type="checkbox"
+        class="c-switch"
         @click="moveBall"
-        class="c-switch" 
-        :class="[classes, onoffClass]"
-    >
-        <div ref="ball" class="c-switch-ball"/>
-    </div>
+    />
+    <label :for="props.inputId" class="c-switch-label" :class="[classes, onoffClass]" @mousedown.prevent/>
 </template>
 
 <script setup lang="ts" name="c-switch">
@@ -16,12 +16,15 @@ const emit = defineEmits(['change']);
 const props = defineProps({
     size: {
         type: String,
-        default: 'medium'
+        default: 'medium',
+    },
+    inputId: {
+        type: String,
+        default: 'toggle',
     }
 })
 
 const on = ref<boolean>(false);
-const ball = ref<HTMLDivElement>();
 
 const onoffClass = computed(() => {
     return {
@@ -38,16 +41,6 @@ const classes = computed(() => {
 })
 
 const moveBall = () => {
-    const el = ball.value;
-    if (el) {
-        if (on.value) {
-            el.style.transform = 'translateX(0%)';
-            el.style.transition = 'transform .3s';
-        } else {
-            el.style.transform = 'translateX(100%)';
-            el.style.transition = 'transform .3s';
-        }
-    }
     on.value = !on.value;
     emit('change', on.value);
 }
@@ -60,8 +53,13 @@ $ball-medium-size: 25px;
 $ball-large-size: 30px;
 
 $padding-size: 2.5px;
-
 .c-switch {
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+}
+.c-switch-label {
     width: $ball-medium-size * 2 + $padding-size * 2;
     height: $ball-medium-size + $padding-size * 2;
 
@@ -77,20 +75,22 @@ $padding-size: 2.5px;
     border-radius: $c-rounded-border-radius;
     transition: background-color 0.2s;
 
-    .c-switch-ball {
+    &::before {
+        content: '';
+
         width: $ball-medium-size;
         height: $ball-medium-size;
         
         background-color: white;
     
-        border-radius: 100%;
+        border-radius: 50%;
     }
 
     &.is-small {
         width: $ball-small-size * 2 + $padding-size * 2;
         height: $ball-small-size + $padding-size * 2;
 
-        .c-switch-ball {
+        &::before {
             width: $ball-small-size;
             height: $ball-small-size;
         }
@@ -100,11 +100,26 @@ $padding-size: 2.5px;
         width: $ball-large-size * 2 + $padding-size * 2;
         height: $ball-large-size + $padding-size * 2;
         
-        .c-switch-ball {
+        &::before {
             width: $ball-large-size;
             height: $ball-large-size;
         }
     }
+}
+input[type="checkbox"]:checked + label {
+    &::before {
+        transform: translateX(100%);
+        transition: all 0.3s;
+    }
+}
+input[type="checkbox"]:not(:checked) + label {
+    &::before {
+        transform: translateX(0%);
+        transition: all 0.3s;
+    }
+}
+input[type="checkbox"]:focus + label {
+    box-shadow: $c-strong-box-shadow;
 }
 .on {
     background-color: $c-success-color;
