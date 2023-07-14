@@ -5,7 +5,13 @@
         class="c-switch"
         @click="moveBall"
     />
-    <label :for="props.inputId" class="c-switch-label" :class="[classes, onoffClass]" @mousedown.prevent/>
+    <label 
+        :for="props.inputId"
+        class="c-switch-label"
+        :class="[classes, onoffClass]"
+        :style="{backgroundColor: on ? props.toggleColor : ''}"
+        @mousedown.prevent
+    />
 </template>
 
 <script setup lang="ts" name="c-switch">
@@ -21,6 +27,10 @@ const props = defineProps({
     inputId: {
         type: String,
         default: 'toggle',
+    },
+    toggleColor: {
+        type: String,
+        default: '#198754',
     }
 })
 

@@ -18,6 +18,10 @@ const meta = {
                 'large',
             ],
         },
+        toggleColor: {
+            description: '스위치 on 색상 `HEXCODE`',
+            defaultValue: '#198754',
+        },
         inputId: {
             description: 'input 아이디',
             defaultValue: 'toggle',
