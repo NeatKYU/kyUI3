@@ -157,7 +157,7 @@ const animateWave = (e: PointerEvent) => {
 
 .c-button {
     width: auto;
-    height: 40px;
+    height: 2.5rem;
 
     position: relative;
     overflow: hidden;
@@ -165,10 +165,10 @@ const animateWave = (e: PointerEvent) => {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 0.5rem;
     
-    font-size: 16px;
-    padding: 2px 16px;
+    font-size: 1rem;
+    padding: 0.125rem 1rem;
 
     background-color: $c-white-color;
     
@@ -219,15 +219,15 @@ const animateWave = (e: PointerEvent) => {
         padding: 0 5px 0 5px;
 
         &.small {
-            width: 30px;
+            width: 1.875rem;
         }
 
         &.medium {
-            width: 40px;
+            width: 2.5rem;
         }
 
         &.large {
-            min-width: 50px;
+            min-width: 3.125rem;
 
             &.is-rounded {
                 border-radius: 100%;
@@ -236,16 +236,16 @@ const animateWave = (e: PointerEvent) => {
     }
 
     &.small {
-        height: 30px;
+        height: 1.875rem;
     }
     
     &.medium {
-        height: 40px;
+        height: 2.5rem;
     }
 
     &.large {
-        min-width: 100px;
-        height: 50px;
+        min-width: 6.25rem;
+        height: 3.125rem;
     }
 }
 
@@ -254,8 +254,8 @@ const animateWave = (e: PointerEvent) => {
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.3);
 
-    width: 100px;
-    height: 100px;
+    width: 6.25rem;
+    height: 6.25rem;
     transform: translate(-50%, -50%);
 
     animation: wave 1s forwards;
