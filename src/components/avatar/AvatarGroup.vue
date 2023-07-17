@@ -4,11 +4,11 @@
             <component
                 v-if="index+1 < max || children.length === max"
                 :is="child"
-                :style="{ 'margin-left': `${index !== 0 ? '-10px' : ''}`, 'z-index': `${children.length - index}` }"
+                :style="{ 'margin-left': `${index !== 0 ? '-10px' : ''}`, 'z-index': `${index}` }"
             />
             <Avatar
                 v-if="index+1 === max && children.length > max"
-                :style="{ 'margin-left': `${index !== 0 ? '-10px' : ''}`, 'z-index': `${children.length - index}` }"
+                :style="{ 'margin-left': `${index !== 0 ? '-10px' : ''}`, 'z-index': `${index}` }"
                 :size="child.props.size"
             >
                 +{{ (children.length - max) + 1 }}
