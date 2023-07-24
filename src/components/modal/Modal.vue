@@ -1,6 +1,6 @@
 <template>
-    <div class="c-modal-wrapper" :class="Classes" @click="close">
-        <div ref="modalRef" class="c-modal" @click.stop>
+    <div ref="modalWrapperRef" class="c-modal-wrapper" :class="Classes" @click="close">
+        <div class="c-modal" @click.stop>
             <div class="c-modal-header">
                 <span>{{ props.title ?? 'modal' }}</span>
                 <Icon icon="xmark" @click="close" class="close-icon"/>
@@ -19,7 +19,7 @@
 import { ref, computed, useSlots } from 'vue';
 import { Icon } from '@/components/icon/index';
 
-const modalRef = ref<any>(null);
+const modalWrapperRef = ref<any>(null);
 const slots = useSlots();
 const emit = defineEmits(['close']);
 const props = defineProps({
@@ -57,6 +57,8 @@ const close = () => {
     position: fixed;
     top: 0;
     left: 0;
+    
+    overflow-y: auto;
 
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 998;
@@ -65,7 +67,7 @@ const close = () => {
     min-width: 18.75rem;
     min-height: 12.5rem;
 
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 50%;
 
@@ -95,7 +97,10 @@ const close = () => {
 .c-modal-body {
     width: 100%;
     height: auto;
-    padding: 1rem;
+    max-height: 80vh;
+    padding: 0.5rem 1rem;
+
+    overflow-y: auto;
 
     flex-grow: 1;
 }
@@ -133,8 +138,8 @@ const close = () => {
         opacity: 0;
     }
     100% {
-        opacity: 1;
         top: 50%;
+        opacity: 1;
     }
 }
 </style>
