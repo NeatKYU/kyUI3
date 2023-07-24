@@ -33,6 +33,11 @@ const props = defineProps({
     },
 })
 const Classes = computed(() => {
+    if (props.isOpen) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
     return {
         'hidden': !props.isOpen,
     }
@@ -61,10 +66,11 @@ const close = () => {
     min-height: 12.5rem;
 
     position: fixed;
-    top: 50%;
+    top: 0;
     left: 50%;
 
     transform: translate(-50%, -50%);
+    animation: slidedown 0.3s ease-in-out forwards;
 
     display: flex;
     flex-direction: column;
@@ -119,5 +125,16 @@ const close = () => {
     align-items: center;
 
     cursor: pointer;
+}
+
+@keyframes slidedown {
+    0% {
+        top: 40%;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        top: 50%;
+    }
 }
 </style>
