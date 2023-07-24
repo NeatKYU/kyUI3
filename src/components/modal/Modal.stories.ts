@@ -38,7 +38,7 @@ export const Default: Story = {
 <div>
     <c-button @click="openModal">open modal</c-button>
     <c-modal :isOpen="isOpen" @close="closeModal">
-    </c-mod>
+    </c-modal>
 </div>
 `
             }
