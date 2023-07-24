@@ -17,6 +17,18 @@ const meta = {
                 'medium',
                 'large',
             ],
+        },
+        toggleColor: {
+            description: '스위치 on 색상 `HEXCODE`',
+            defaultValue: '#198754',
+        },
+        inputId: {
+            description: 'input 아이디',
+            defaultValue: 'toggle',
+        },
+        change: {
+            description: 'change 이벤트 함수',
+            defaultValue: () => null,
         }
     },
 } satisfies Meta<typeof Switch>;
@@ -30,7 +42,8 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
     args: {
-        size: 'medium'
+        size: 'medium',
+        inputId: 'toggle1',
     },
 };
 
@@ -39,9 +52,9 @@ export const SizeSwitch: Story = {
         docs: {
             source: {
                 code: `
-<c-switch v-bind='args' size="small"/>
-<c-switch v-bind='args'/>
-<c-switch v-bind='args' size="large"/>
+<c-switch v-bind='args' size="small" inputId="toggle1"/>
+<c-switch v-bind='args' inputId="toggle2"/>
+<c-switch v-bind='args' size="large" inputId="toggle3"/>
 `
             }
         }
@@ -54,10 +67,10 @@ export const SizeSwitch: Story = {
         template: 
         `
         <div class="button-group">
-            <Switch v-bind="args" size="small"/>
-            <Switch v-bind="args"/>
-            <Switch v-bind="args" size="large"/>
-        <div>
+            <Switch v-bind="args" size="small" inputId="toggle3"/>
+            <Switch v-bind="args" inputId="toggle4"/>
+            <Switch v-bind="args" size="large" inputId="toggle5"/>
+        </div>
         `
     }),
 };

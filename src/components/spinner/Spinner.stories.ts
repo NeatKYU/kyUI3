@@ -8,13 +8,9 @@ const meta = {
     // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
     tags: ['autodocs'],
     argTypes: {
-        trackColor: {
-            description: '스피너의 트랙 색상',
-            defaultValue: '#c2c2c2',
-        },
-        progressColor: {
+        color: {
             description: '스피너 색상',
-            defaultValue: '#000000',
+            defaultValue: '#c2c2c2',
         },
         size: {
             description: '스피너 크기',
@@ -24,7 +20,7 @@ const meta = {
         },
         speed: {
             description: '스피너 애니메이션 속도',
-            defaultValue: 1,
+            defaultValue: '1s',
         }
     },
 } satisfies Meta<typeof Spinner>;
@@ -38,10 +34,9 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
     args: {
-        trackColor: '#c2c2c2',
-        progressColor: '#000000',
+        color: '#c2c2c2',
         size: 'medium',
-        speed: 1,
+        speed: '1s',
     },
 };
 
@@ -70,10 +65,9 @@ export const Size: Story = {
         </div>`
     }),
     args: {
-        trackColor: '#c2c2c2',
-        progressColor: '#000000',
+        color: '#c2c2c2',
         size: 'medium',
-        speed: 1,
+        speed: '1s',
     },
 };
 

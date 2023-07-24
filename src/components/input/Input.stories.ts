@@ -51,6 +51,14 @@ const meta = {
                 category: 'Icon',
             },
         },
+        label: {
+            description: 'input 라벨',
+            defaultValue: '',
+        },
+        helperText: {
+            description: 'input 도움말',
+            defaultValue: '',
+        }
     },
 } satisfies Meta<typeof Input>;
 
@@ -77,6 +85,50 @@ export const Default: Story = {
     }),
     args: {
         type: 'text',
+        placeholder: 'input',
+        isValidate: true,
+        disabled: false,
+    },
+};
+
+export const InputWithLabelAndHelperText: Story = {
+    render: (args) => ({
+        components: {
+            Input,
+        },
+        setup() {
+            const value = ref('');
+            return { args, value };
+        },
+        template: `
+            <Input v-bind="args" v-model="value"></Input>
+        `
+    }),
+    args: {
+        type: 'text',
+        placeholder: 'input',
+        isValidate: true,
+        disabled: false,
+        label: 'label',
+        helperText: '헬퍼 텍스트 입니다.',
+    },
+};
+
+export const Textarea: Story = {
+    render: (args) => ({
+        components: {
+            Input,
+        },
+        setup() {
+            const value = ref('');
+            return { args, value };
+        },
+        template: `
+            <Input v-bind="args" v-model="value"></Input>
+        `
+    }),
+    args: {
+        type: 'textarea',
         placeholder: 'input',
         isValidate: true,
         disabled: false,

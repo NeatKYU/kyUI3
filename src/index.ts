@@ -16,6 +16,7 @@ import { Spinner } from './components/spinner/index';
 import { Carousel } from './components/carousel/index';
 import { Divider } from './components/divider/index';
 import { FloatingButton, FloatingItem } from './components/floating-button/index';
+import { Modal } from './components/modal/index';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -76,6 +77,9 @@ const components = [
     }, {
         name: 'c-floating-item',
         value: FloatingItem,
+    }, {
+        name: 'c-modal',
+        value: Modal,
     }
 ]
 
@@ -107,6 +111,7 @@ export {
     Divider,
     FloatingButton,
     FloatingItem,
+    Modal,
 
     FontAwesomeIcon,
 }

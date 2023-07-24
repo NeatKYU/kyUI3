@@ -19,7 +19,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/types": "^7.20.7",
     "@storybook/addon-essentials": "^7.0.3",
