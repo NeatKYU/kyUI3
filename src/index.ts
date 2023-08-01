@@ -17,6 +17,7 @@ import { Carousel } from './components/carousel/index';
 import { Divider } from './components/divider/index';
 import { FloatingButton, FloatingItem } from './components/floating-button/index';
 import { Modal } from './components/modal/index';
+import { Accordion } from './components/accordion/index';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -80,6 +81,9 @@ const components = [
     }, {
         name: 'c-modal',
         value: Modal,
+    }, {
+        name: 'c-accordion',
+        value: Accordion,
     }
 ]
 
@@ -112,6 +116,7 @@ export {
     FloatingButton,
     FloatingItem,
     Modal,
+    Accordion,
 
     FontAwesomeIcon,
 }
