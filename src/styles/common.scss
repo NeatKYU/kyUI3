@@ -1,10 +1,13 @@
-$c-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+$c-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 $c-strong-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 // color
 // primary
 $c-primary-color: #5e737d;
 $c-primary-hover-color: #b2bdc1;
+// active color
+$c-primary-active-color: #508da0;
 
 //success
 $c-success-color: #198754;
@@ -13,26 +16,26 @@ $c-success-hover-color: #1da062;
 //fail
 $c-danger-color: lightcoral;
 
-
 // border
 $c-default-border-color: rgb(202, 202, 202);
 $c-hover-border-color: gray;
 
 // white
-$c-white-color: #FFF;
+$c-white-color: #fff;
 
 // common hover color
 $c-common-hover-color: lightgray;
 
 // 투명도 들어간 hover
-$c-common-trans-hover-color: rgba(0,0,0,0.4);
+$c-common-trans-hover-color: rgba(0, 0, 0, 0.4);
 
 $c-border-radius: 5px;
 $c-rounded-border-radius: 20px;
 
 @font-face {
     font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+        format('woff');
     font-weight: 400;
     font-style: normal;
 }
@@ -53,7 +56,6 @@ $c-rounded-border-radius: 20px;
 }
 
 .c-common-button-group {
-
     button,
     span,
     div,
@@ -64,7 +66,7 @@ $c-rounded-border-radius: 20px;
     button:first-child:not(.is-rounded),
     span:first-child:not(.is-rounded),
     div:first-child:not(.is-rounded),
-    a:first-child:not(.is-rounded){
+    a:first-child:not(.is-rounded) {
         border-top-left-radius: $c-border-radius;
         border-bottom-left-radius: $c-border-radius;
     }
@@ -72,7 +74,7 @@ $c-rounded-border-radius: 20px;
     button:last-child:not(.is-rounded),
     span:last-child:not(.is-rounded),
     div:last-child:not(.is-rounded),
-    a:last-child:not(.is-rounded){
+    a:last-child:not(.is-rounded) {
         border-top-right-radius: $c-border-radius;
         border-bottom-right-radius: $c-border-radius;
     }
@@ -80,7 +82,7 @@ $c-rounded-border-radius: 20px;
     button:not(:last-child):not(.is-rounded),
     span:not(:last-child):not(.is-rounded),
     div:not(:last-child):not(.is-rounded),
-    a:not(:last-child):not(.is-rounded){
+    a:not(:last-child):not(.is-rounded) {
         border-right: none;
     }
 }

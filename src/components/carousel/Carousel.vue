@@ -1,27 +1,47 @@
 <template>
-    <div class="wrapper" :style="{width: (props.width + (props.contentPadding*2))+'px'}">
-        <Button 
+    <div
+        class="wrapper"
+        :class="hoverClass"
+        :style="{ width: props.width + 'px' }"
+        @mouseenter="mouseEnter"
+        @mouseleave="mouseLeave"
+    >
+        <Button
             v-if="showArrow"
-            class="left-button" 
-            rounded animation outlined isIconButton 
-            icon="angle-left" 
+            class="left-button"
+            rounded
+            animation
+            outlined
+            isIconButton
+            icon="angle-left"
             :onclick="() => move('left')"
         />
-        <Button 
+        <Button
             v-if="showArrow"
-            class="right-button" 
-            rounded animation outlined isIconButton 
-            icon="angle-right" 
+            class="right-button"
+            rounded
+            animation
+            outlined
+            isIconButton
+            icon="angle-right"
             :onclick="() => move('right')"
         />
-        <div class="c-carousel" :style="{width: props.width+'px', height: props.height+'px'}">
+        <div
+            class="c-carousel"
+            :style="{ width: props.width + 'px', height: props.height + 'px' }"
+        >
             <div class="flexbox" ref="track">
-                <div v-for="item in props.imageSrcList" className="img" :key="item" :style="{backgroundImage: `url(${item})`}"/>
+                <div
+                    v-for="item in props.images"
+                    className="img"
+                    :key="item"
+                    :style="{ backgroundImage: `url(${item})` }"
+                />
             </div>
             <div v-if="showIndicator" class="dot-wrapper">
-                <div 
-                    v-for="item, index in props.imageSrcList" 
-                    :key="item" 
+                <div
+                    v-for="(item, index) in props.images"
+                    :key="item"
                     class="dot"
                     :class="[index === currentIndex ? 'active' : '']"
                     @click="() => moveDirect(index)"
@@ -32,8 +52,8 @@
 </template>
 
 <script setup lang="ts" name="c-carousel">
-import { ref, onMounted } from 'vue'
-import Button from '../button/Button.vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue';
+import Button from '../button/Button.vue';
 
 const props = defineProps({
     width: {
@@ -44,12 +64,8 @@ const props = defineProps({
         type: Number,
         default: 300,
     },
-    contentPadding: {
-        type: Number,
-        default: 20,
-    },
-    imageSrcList: {
-        default: [] as string[]
+    images: {
+        default: [] as string[],
     },
     showIndicator: {
         type: Boolean,
@@ -66,65 +82,99 @@ const props = defineProps({
     interval: {
         type: Number,
         default: 3,
-    }
-})
+    },
+});
 
 const track = ref<HTMLDivElement>();
 const currentIndex = ref<number>(0);
+const isHover = ref<boolean>(false);
+const interval = ref<any>(null);
 
-const mounted = onMounted(() => {
-    if (props.autoPlay) setInterval(() => move('right'), props.interval * 1000);
-})
+onMounted(() => {
+    if (props.autoPlay) {
+        interval.value = setInterval(
+            () => move('right'),
+            props.interval * 1000
+        );
+    }
+});
+
+onUnmounted(() => {
+    if (interval.value) {
+        clearInterval(interval.value);
+    }
+});
+
+const hoverClass = computed(() => {
+    return {
+        'mouse-over': isHover.value,
+    };
+});
 
 const move = (dir: 'left' | 'right') => {
     if (track.value) {
         if (dir === 'left') {
             if (currentIndex.value === 0) {
-                currentIndex.value = props.imageSrcList.length-1;
+                currentIndex.value = props.images.length - 1;
             } else {
                 currentIndex.value--;
             }
         } else {
-            if (currentIndex.value === props.imageSrcList.length-1) {
+            if (currentIndex.value === props.images.length - 1) {
                 currentIndex.value = 0;
             } else {
                 currentIndex.value++;
             }
         }
-        track.value.style.transform = `translateX(-${currentIndex.value * 100}%)`;
+        track.value.style.transform = `translateX(-${
+            currentIndex.value * 100
+        }%)`;
     }
-}
+};
 
 const moveDirect = (index: number) => {
     currentIndex.value = index;
     if (track.value) {
-        track.value.style.transform = `translateX(-${currentIndex.value * 100}%)`;
+        track.value.style.transform = `translateX(-${
+            currentIndex.value * 100
+        }%)`;
     }
-}
+};
+
+const mouseEnter = () => {
+    isHover.value = true;
+};
+const mouseLeave = () => {
+    isHover.value = false;
+};
 </script>
 
 <style lang="scss" scoped>
 .wrapper {
-    width: 340px;
     height: 300px;
     display: inline-flex;
 
     position: relative;
-    padding: 0 20px;
+    /* padding: 0 20px; */
     button {
+        opacity: 0;
         background-color: transparent;
         position: absolute;
         top: 50%;
-        transform: translate(-50%, -50%);
         z-index: 99;
+        transform: translate(0%, -50%);
+        transition: all 0.5s;
 
         color: white;
     }
-    .left-button {
-        left: 40px;
-    }
+    /* .left-button {} */
     .right-button {
         right: 0;
+    }
+}
+.mouse-over {
+    button {
+        opacity: 1;
     }
 }
 .c-carousel {
@@ -138,7 +188,7 @@ const moveDirect = (index: number) => {
 
     .dot-wrapper {
         width: 100%;
-        height: 15%;
+        height: 10%;
         opacity: 0.3;
 
         display: flex;
@@ -152,15 +202,9 @@ const moveDirect = (index: number) => {
         bottom: 0;
         left: 0;
 
-        /* &:hover {
-            background-color: gray;
-        }
-
-        transition: 0.5s; */
-
         .dot {
-            width: 15px;
-            height: 15px;
+            width: 10px;
+            height: 10px;
             border-radius: 100%;
 
             background-color: #efefef;
@@ -187,7 +231,7 @@ const moveDirect = (index: number) => {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 50% 50%;
-    
+
     flex: none;
 }
 
@@ -201,5 +245,4 @@ const moveDirect = (index: number) => {
 
     transition: 0.5s;
 }
-
 </style>

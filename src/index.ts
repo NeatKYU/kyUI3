@@ -3,20 +3,23 @@ import type { App } from 'vue';
 // components
 import { Input } from './components/input/index';
 import { Icon } from './components/icon/index';
-import { Button } from './components/button/index';
+import { Button, ButtonGroup } from './components/button/index';
 import { Switch } from './components/switch/index';
 import { Tooltip } from './components/tooltip/index';
 import { Tag } from './components/tag/index';
 import { Pagination } from './components/pagination/index';
 import { Dropdown, DropdownItem } from './components/dropdown/index';
-import { ButtonGroup } from './components/button-group/index';
 import { Avatar, AvatarGroup } from './components/avatar/index';
 import { DatePicker } from './components/date-picker/index';
 import { Spinner } from './components/spinner/index';
 import { Carousel } from './components/carousel/index';
 import { Divider } from './components/divider/index';
-import { FloatingButton, FloatingItem } from './components/floating-button/index';
+import {
+    FloatingButton,
+    FloatingItem,
+} from './components/floating-button/index';
 import { Modal } from './components/modal/index';
+import { Accordion, AccordionGroup } from './components/accordion/index';
 
 // fontawesome icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -26,71 +29,97 @@ const components = [
     {
         name: 'c-input',
         value: Input,
-    }, {
+    },
+    {
         name: 'c-icon',
-        value: Icon
-    }, {
+        value: Icon,
+    },
+    {
         name: 'c-button',
-        value: Button
-    }, {
+        value: Button,
+    },
+    {
         name: 'c-switch',
-        value: Switch
-    }, {
+        value: Switch,
+    },
+    {
         name: 'c-tooltip',
-        value: Tooltip
-    }, {
+        value: Tooltip,
+    },
+    {
         name: 'c-tag',
-        value: Tag
-    }, {
+        value: Tag,
+    },
+    {
         name: 'c-pagination',
-        value: Pagination
-    }, {
+        value: Pagination,
+    },
+    {
         name: 'c-dropdown',
-        value: Dropdown
-    }, {
+        value: Dropdown,
+    },
+    {
         name: 'c-dropdown-item',
-        value: DropdownItem
-    }, {
+        value: DropdownItem,
+    },
+    {
         name: 'c-button-group',
-        value: ButtonGroup
-    }, {
+        value: ButtonGroup,
+    },
+    {
         name: 'c-avatar',
-        value: Avatar
-    }, {
+        value: Avatar,
+    },
+    {
         name: 'c-avatar-group',
-        value: AvatarGroup
-    }, {
+        value: AvatarGroup,
+    },
+    {
         name: 'c-datepicker',
-        value: DatePicker
-    }, {
+        value: DatePicker,
+    },
+    {
         name: 'c-spinner',
-        value: Spinner
-    }, {
+        value: Spinner,
+    },
+    {
         name: 'c-carousel',
-        value: Carousel
-    }, {
+        value: Carousel,
+    },
+    {
         name: 'c-divider',
-        value: Divider
-    }, {
+        value: Divider,
+    },
+    {
         name: 'c-floating-button',
         value: FloatingButton,
-    }, {
+    },
+    {
         name: 'c-floating-item',
         value: FloatingItem,
-    }, {
+    },
+    {
         name: 'c-modal',
         value: Modal,
-    }
-]
+    },
+    {
+        name: 'c-accordion',
+        value: Accordion,
+    },
+    {
+        name: 'c-accordion-group',
+        value: AccordionGroup,
+    },
+];
 
 const kyui3 = {
     install(app: App) {
         components.map((item) => {
-            app.component(item.name, item.value)
-        })
-        app.component('f-icon', FontAwesomeIcon)
-    }
-}
+            app.component(item.name, item.value);
+        });
+        app.component('f-icon', FontAwesomeIcon);
+    },
+};
 
 export {
     Input,
@@ -112,8 +141,9 @@ export {
     FloatingButton,
     FloatingItem,
     Modal,
-
+    Accordion,
+    AccordionGroup,
     FontAwesomeIcon,
-}
+};
 
 export default kyui3;

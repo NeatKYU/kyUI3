@@ -58,6 +58,8 @@ useOutsideClick(buttonRef, close);
     box-shadow: $c-strong-box-shadow;
 
     cursor: pointer;
+    
+    z-index: 999;
 
     .c-floating-trigger {
         width: 100%;
