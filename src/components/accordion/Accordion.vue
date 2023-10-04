@@ -2,6 +2,9 @@
     <div class="c-accordion">
         <div class="c-accordion-title" @click="changeOpen">
             {{ title }}
+            <div :class="activeClass">
+                <Icon v-if="isArrow" icon="angle-down" />
+            </div>
         </div>
         <div ref="bodyRef" class="c-accordion-body">
             <slot />
@@ -11,10 +14,15 @@
 
 <script setup lang="ts" name="c-accordion">
 import { computed, onMounted, ref } from 'vue';
+import { Icon } from '@/components/icon/index';
 const props = defineProps({
     title: {
         type: String,
         default: '',
+    },
+    isArrow: {
+        type: Boolean,
+        default: false,
     },
 });
 const isOpen = ref<boolean>(false);
@@ -48,11 +56,11 @@ const initValue = (openValue: boolean) => {
 //         'scale-down': !isOpen.value,
 //     };
 // });
-// const activeClass = computed(() => {
-//     return {
-//         active: isOpen.value,
-//     };
-// });
+const activeClass = computed(() => {
+    return {
+        rotate: isOpen.value,
+    };
+});
 </script>
 <style lang="scss" scoped>
 @import '../../styles/common.scss';
@@ -70,6 +78,10 @@ const initValue = (openValue: boolean) => {
 }
 
 .c-accordion-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     font-size: 1.2rem;
     cursor: pointer;
     z-index: 1;
@@ -88,6 +100,9 @@ const initValue = (openValue: boolean) => {
     margin-top: 0.5rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+}
+.rotate {
+    transform: rotate(180deg);
 }
 /* .active {
     background-color: $c-primary-hover-color;
