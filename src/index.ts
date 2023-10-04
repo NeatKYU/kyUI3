@@ -3,13 +3,12 @@ import type { App } from 'vue';
 // components
 import { Input } from './components/input/index';
 import { Icon } from './components/icon/index';
-import { Button } from './components/button/index';
+import { Button, ButtonGroup } from './components/button/index';
 import { Switch } from './components/switch/index';
 import { Tooltip } from './components/tooltip/index';
 import { Tag } from './components/tag/index';
 import { Pagination } from './components/pagination/index';
 import { Dropdown, DropdownItem } from './components/dropdown/index';
-import { ButtonGroup } from './components/button-group/index';
 import { Avatar, AvatarGroup } from './components/avatar/index';
 import { DatePicker } from './components/date-picker/index';
 import { Spinner } from './components/spinner/index';

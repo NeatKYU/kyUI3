@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import Button from '@/components/button/Button.vue';
-import ButtonGroup from '@/components/button-group/ButtonGroup.vue';
+import ButtonGroup from '@/components/button/ButtonGroup.vue';
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 const meta = {
@@ -15,21 +15,20 @@ const meta = {
             control: null,
         },
         label: {
-            description: '버튼에 들어가는 내용입니다. `children`으로 넣어줘도 되지만 `label`속성에 넣어주어도 무관합니다.',
+            description:
+                '버튼에 들어가는 내용입니다. `children`으로 넣어줘도 되지만 `label`속성에 넣어주어도 무관합니다.',
             defaultValue: 'Button',
         },
         size: {
-            description: '버튼의 크기를 조절합니다. `small` `medium` `large`가 있습니다.',
+            description:
+                '버튼의 크기를 조절합니다. `small` `medium` `large`가 있습니다.',
             defaultValue: 'medium',
             control: 'select',
-            options: [
-                'small',
-                'medium',
-                'large',
-            ],
+            options: ['small', 'medium', 'large'],
         },
         tag: {
-            description: '버튼을 감싸는 `div`를 설정해줍니다. 기본적으로 `button`으로 설정되고 `a` `link`등등 다양합니다.',
+            description:
+                '버튼을 감싸는 `div`를 설정해줍니다. 기본적으로 `button`으로 설정되고 `a` `link`등등 다양합니다.',
             defaultValue: 'button',
             control: 'select',
             options: [
@@ -79,14 +78,14 @@ const meta = {
             defaultValue: false,
             table: {
                 category: 'Icon',
-            }
+            },
         },
         icon: {
             description: '아이콘 버튼일때 사용할 아이콘',
             defaultValue: 'star',
             table: {
-                category: 'Icon'
-            }
+                category: 'Icon',
+            },
         },
         animation: {
             description: '물결 무늬 애니메이션 효과',
@@ -99,7 +98,7 @@ const meta = {
         outlined: {
             description: 'outline 효과 여부',
             defaultValue: false,
-        }
+        },
     },
 } satisfies Meta<typeof Button>;
 
@@ -133,21 +132,20 @@ export const SizeButton: Story = {
 <c-button v-bind='args' size="small">Button</c-button>
 <c-button v-bind='args'>Button</c-button>
 <c-button v-bind='args' size="large">Button</c-button>
-`
-            }
-        }
+`,
+            },
+        },
     },
     render: (args) => ({
         components: { Button },
         setup() {
             return { args };
         },
-        template: 
-        `<div class='button-group'>
+        template: `<div class='button-group'>
             <Button v-bind="args" size="small"></Button>
             <Button v-bind="args"></Button>
             <Button v-bind="args" size="large"></Button>
-        </div>`
+        </div>`,
     }),
     args: {
         primary: true,
@@ -161,9 +159,9 @@ export const FullMode: Story = {
             source: {
                 code: `
 <c-button v-bind='args' full>Button</c-button>
-`
-            }
-        }
+`,
+            },
+        },
     },
     args: {
         primary: true,
@@ -180,21 +178,20 @@ export const IconButton: Story = {
 <c-button v-bind='args' leftIcon='angle-left'>Icon</c-button>
 <c-button v-bind='args' rightIcon='angle-right'>Icon</c-button>
 <c-button v-bind='args' isIconButton icon='star'></c-button>
-`
-            }
-        }
+`,
+            },
+        },
     },
     render: (args) => ({
         components: { Button },
         setup() {
             return { args };
         },
-        template: 
-        `<div class='button-group'>
+        template: `<div class='button-group'>
             <Button v-bind='args' leftIcon='angle-left'></Button>
             <Button v-bind='args' rightIcon='angle-right'></Button>
             <Button v-bind='args' isIconButton icon='star'></Button>
-        </div>`
+        </div>`,
     }),
     args: {
         primary: true,
@@ -203,8 +200,8 @@ export const IconButton: Story = {
         rightIcon: '',
         isIconButton: false,
         icon: '',
-    }
-}
+    },
+};
 
 export const OutlineButton: Story = {
     parameters: {
@@ -212,15 +209,15 @@ export const OutlineButton: Story = {
             source: {
                 code: `
 <c-button outlined>Outlined</c-button>
-`
-            }
-        }
+`,
+            },
+        },
     },
     args: {
         label: 'Outlined',
         outlined: true,
-    }
-}
+    },
+};
 
 export const RoundButton: Story = {
     parameters: {
@@ -228,16 +225,16 @@ export const RoundButton: Story = {
             source: {
                 code: `
 <c-button rounded>Rounded</c-button>
-`
-            }
-        }
+`,
+            },
+        },
     },
     args: {
         primay: true,
         label: 'Rounded',
         rounded: true,
-    }
-}
+    },
+};
 
 export const Group: Story = {
     parameters: {
@@ -249,22 +246,20 @@ export const Group: Story = {
     <c-button>group2</c-button>
     <c-button>group3</c-button>
 </c-button-group>
-`
-            }
-        }
+`,
+            },
+        },
     },
     render: (args) => ({
         components: { Button, ButtonGroup },
         setup() {
             return { args };
         },
-        template: 
-        `<ButtonGroup>
+        template: `<ButtonGroup>
             <Button v-bind='args'>group1</Button>
             <Button v-bind='args'>group2</Button>
             <Button v-bind='args'>group3</Button>
-        </ButtonGroup>`
+        </ButtonGroup>`,
     }),
-    args: {
-    }
-}
+    args: {},
+};
