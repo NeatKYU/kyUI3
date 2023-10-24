@@ -1,35 +1,35 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
-import Tag from '@/components/tag/Tag.vue';
+import Badge from '@/components/badge/Badge.vue';
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 const meta = {
-    title: 'kyUI3/Tag',
-    component: Tag,
+    title: 'kyUI3/Badge',
+    component: Badge,
     // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
     tags: ['autodocs'],
     argTypes: {
         textValue: {
-            description: '태그의 텍스트 필드',
+            description: '뱃지의 텍스트 필드',
             defaultValue: '',
         },
         size: {
-            description: '태그의 사이즈',
+            description: '뱃지의 사이즈',
             defaultValue: 'medium',
             control: 'select',
             options: ['small', 'medium', 'large'],
         },
         variant: {
-            description: '태그의 테마 색상',
+            description: '뱃지의 테마 색상',
             defaultValue: 'primary',
             control: 'select',
             options: ['primary', 'success', 'danger'],
         },
         rounded: {
-            description: '둥근 태그',
+            description: '둥근 뱃지',
             defaultValue: false,
         },
     },
-} satisfies Meta<typeof Tag>;
+} satisfies Meta<typeof Badge>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -40,7 +40,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
     args: {
-        textValue: 'tag',
+        textValue: 'badge',
         isPrimary: true,
         size: 'medium',
         rounded: false,
@@ -52,27 +52,27 @@ export const Size: Story = {
         docs: {
             source: {
                 code: `
-<c-tag v-bind='args' size="small"/>
-<c-tag v-bind='args'/>
-<c-tag v-bind='args' size="large"/>
+<c-badge v-bind='args' size="small"/>
+<c-badge v-bind='args'/>
+<c-badge v-bind='args' size="large"/>
 `
             }
         }
     },
     render: (args) => ({
-        components: { Tag },
+        components: { Badge },
         setup() {
             return { args };
         },
         template: 
         `<div class='button-group'>
-            <Tag v-bind="args" size="small"></Tag>
-            <Tag v-bind="args"></Tag>
-            <Tag v-bind="args" size="large"></Tag>
+            <Badge v-bind="args" size="small"></Badge>
+            <Badge v-bind="args"></Badge>
+            <Badge v-bind="args" size="large"></Badge>
         </div>`
     }),
     args: {
-        textValue: 'tag',
+        textValue: 'badge',
         isPrimary: true,
         size: 'medium',
         rounded: false,
@@ -84,53 +84,53 @@ export const Rounded: Story = {
         docs: {
             source: {
                 code: `
-<c-tag v-bind='args' rounded/>
+<c-badge v-bind='args' rounded/>
 `
             }
         }
     },
     render: (args) => ({
-        components: { Tag },
+        components: { Badge },
         setup() {
             return { args };
         },
         template: 
-        `<Tag v-bind="args" rounded></Tag>`
+        `<Badge v-bind="args" rounded></Badge>`
     }),
     args: {
-        textValue: 'tag',
+        textValue: 'badge',
         isPrimary: true,
         size: 'medium',
         rounded: true,
     },
 };
 
-export const Theme: Story = {
+export const Variant: Story = {
     parameters: {
         docs: {
             source: {
                 code: `
-<c-tag v-bind='args'/>
-<c-tag v-bind='args' variant="success"/>
-<c-tag v-bind='args' variant="danger"/>
+<c-badge v-bind='args'/>
+<c-badge v-bind='args' variant="success"/>
+<c-badge v-bind='args' variant="danger"/>
 `
             }
         }
     },
     render: (args) => ({
-        components: { Tag },
+        components: { Badge },
         setup() {
             return { args };
         },
         template: 
             `<div class="button-group">
-                <Tag v-bind="args"></Tag>
-                <Tag v-bind="args" variant="success"></Tag>
-                <Tag v-bind="args" variant="danger"></Tag>
+                <Badge v-bind="args"></Badge>
+                <Badge v-bind="args" variant="success"></Badge>
+                <Badge v-bind="args" variant="danger"></Badge>
             </div>`
     }),
     args: {
-        textValue: 'tag',
+        textValue: 'badge',
         size: 'medium',
     },
 };

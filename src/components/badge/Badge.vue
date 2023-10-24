@@ -1,13 +1,13 @@
 <template>
 	<div 
-		class="c-tag"
+		class="c-badge"
 		:class="[classes]"
 	>
 		{{ textValue }}
 	</div>
 </template>
 
-<script setup lang="ts" name="c-tag">
+<script setup lang="ts" name="c-badge">
 import { computed } from 'vue'
 
 const props = defineProps<{
@@ -31,7 +31,7 @@ const classes = computed(() => {
 <style lang="scss" scoped>
 @import '../../styles/common.scss';
 
-.c-tag {
+.c-badge {
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
