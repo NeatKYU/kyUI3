@@ -22,13 +22,6 @@ import { computed, ref } from 'vue';
 import { Icon } from '@/components/icon/index';
 import config from '@/utils/config';
 
-
-/**
- * type: 
- * label: 버튼 내용
- * tag: <a, Link, etc... >
- * primary: 기본 색상 모드
- */
 const props = defineProps({
     type: [String, Object],
     label: {
@@ -125,15 +118,17 @@ const animateWave = (e: PointerEvent) => {
         div.style.borderRadius = '50%';
         div.style.width = '100px';
         div.style.height = '100px';
-        // div.style.transform = 'translate(-50%, -50%)';
-        div.style.animation = 'wave 1s';
+        div.style.left = e.offsetX + 'px';
+        div.style.top = e.offsetY + 'px';
         div.style.opacity = '0';
+        div.style.pointerEvents = 'none';
 
         // set div animation
         const waveEffect = [
-            { transform: 'scale(0)', opacity: 1 },
-            { transform: 'scale(1)', opacity: 0 },
+            { transform: 'translate(-50%, -50%) scale(0)', opacity: 1 },
+            { transform: 'translate(-50%, -50%) scale(1)', opacity: 0 },
         ]
+        
         const setTime = {
             duration: 500,
             iterations: 1,
@@ -141,7 +136,6 @@ const animateWave = (e: PointerEvent) => {
 
         // https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
         div.animate(waveEffect, setTime);
-
         el.appendChild(div);
 
         // remove div
@@ -174,6 +168,14 @@ const animateWave = (e: PointerEvent) => {
     
     border-radius: $c-border-radius;
     border: 1px solid $c-default-border-color;
+
+    transition: all 0.5s;
+
+    span,
+    svg,
+    div {
+        pointer-events: none;
+    }
 
     &:hover {
         background-color: $c-primary-hover-color;
@@ -246,30 +248,6 @@ const animateWave = (e: PointerEvent) => {
     &.large {
         min-width: 6.25rem;
         height: 3.125rem;
-    }
-}
-
-.wave {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.3);
-
-    width: 6.25rem;
-    height: 6.25rem;
-    transform: translate(-50%, -50%);
-
-    animation: wave 1s forwards;
-    opacity: 0;
-}
-
-@keyframes wave {
-	from {
-        opacity: 1;
-        transform: scale(0);
-    }
-    to {
-        opacity: 0;
-        transform: scale(1);
     }
 }
 
