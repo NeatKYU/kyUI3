@@ -4,15 +4,17 @@
             <Button
                 v-if="isEndButton"
                 @click="prevEnd"
-                leftIcon="angles-left"
+                icon="angles-left"
                 :disabled="isStartDisable"
-                :rounded="rounded"
+                outlined isIconButton rounded
+                size="small"
             />
             <Button
                 @click="prev"
-                leftIcon="angle-left"
+                icon="angle-left"
                 :disabled="isStartDisable"
-                :rounded="rounded"
+                outlined isIconButton rounded
+                size="small"
             />
         </ButtonGroup>
         <div class="flex">
@@ -31,16 +33,18 @@
         <ButtonGroup>
             <Button
                 @click="next"
-                rightIcon="angle-right"
+                icon="angle-right"
                 :disabled="isEndDisable"
-                :rounded="rounded"
+                outlined isIconButton rounded
+                size="small"
             />
             <Button
                 v-if="isEndButton"
                 @click="nextEnd"
-                rightIcon="angles-right"
+                icon="angles-right"
                 :disabled="isEndDisable"
-                :rounded="rounded"
+                outlined isIconButton rounded
+                size="small"
             />
         </ButtonGroup>
     </div>
@@ -84,7 +88,6 @@ const props = defineProps({
 });
 
 const sTotalPage = ref<number>(1);
-// const sCurrentShowPage = ref<number>(1);
 const sCurrentPage = ref<number>(1);
 const sStartPage = ref<number>(1);
 const sEndPage = ref<number>(props.showPage);
@@ -117,7 +120,6 @@ const setPageList = (start: number, end: number) => {
 };
 
 const next = () => {
-    // console.log('next!')
     if (sTotalPage.value > sCurrentPage.value) {
         sCurrentPage.value += 1;
         updatePage(sCurrentPage.value);
@@ -134,7 +136,6 @@ const next = () => {
 };
 
 const prev = () => {
-    // console.log('prev!')
     if (sCurrentPage.value > 1) {
         sCurrentPage.value -= 1;
         updatePage(sCurrentPage.value);
@@ -185,7 +186,7 @@ onMounted(() => {
 
 .c-pagination {
     display: flex;
-    gap: 20px;
+    gap: 10px;
 }
 .c-pagination-item {
     width: 40px;
@@ -213,9 +214,5 @@ onMounted(() => {
     &:hover {
         background-color: $c-primary-hover-color;
     }
-}
-
-.c-pagination-prev-btn,
-.c-pagination-next-btn {
 }
 </style>
