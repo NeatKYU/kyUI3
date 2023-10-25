@@ -1,8 +1,5 @@
 <template>
     <div class="c-spinner-wrapper" :class="[classes]">
-        <!-- <div class="progress-track" :style="{borderColor:props.trackColor, animationDuration: props.speed}"/> -->
-        <!-- <div class="progress" :style="{borderColor:props.progressColor, animationDuration: props.speed}"/> -->
-        <!-- <div class="progress-half" :style="{borderColor:props.progressColor, animationDuration: props.speed}"/> -->
         <div class="c-spinner" :style="{backgroundColor: props.color, animationDuration: props.speed}"></div>
     </div>
 </template>
@@ -67,7 +64,6 @@ $spinner-height-large: 45px;
         mask-composite: subtract;
         box-sizing: border-box;
         animation: spin linear infinite;
-        animation-duration: 1s;
     }
 
     &.is-small {
