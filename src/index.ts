@@ -6,7 +6,7 @@ import { Icon } from './components/icon/index';
 import { Button, ButtonGroup } from './components/button/index';
 import { Switch } from './components/switch/index';
 import { Tooltip } from './components/tooltip/index';
-import { Tag } from './components/tag/index';
+import { Badge } from './components/badge/index';
 import { Pagination } from './components/pagination/index';
 import { Dropdown, DropdownItem } from './components/dropdown/index';
 import { Avatar, AvatarGroup } from './components/avatar/index';
@@ -47,8 +47,8 @@ const components = [
         value: Tooltip,
     },
     {
-        name: 'c-tag',
-        value: Tag,
+        name: 'c-badge',
+        value: Badge,
     },
     {
         name: 'c-pagination',
@@ -127,7 +127,7 @@ export {
     Button,
     Switch,
     Tooltip,
-    Tag,
+    Badge,
     Pagination,
     Dropdown,
     DropdownItem,

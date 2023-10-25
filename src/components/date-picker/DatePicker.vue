@@ -24,7 +24,7 @@
                 <div v-for="day, index in currentDayList">
                     <Button 
                         v-if="day !== ''" 
-                        size="small" animation outlined
+                        size="small" outlined
                         :class="[
                             checkSelectedButton(parseInt(day)), 
                             dayColorClasses(index), 
@@ -327,15 +327,6 @@ onMounted(() => {
             margin: 10px 0;
         }
 
-        /* .year::-webkit-scrollbar {
-            width: 4px;
-        }
-        .year::-webkit-scrollbar-thumb {
-            height: 30%;
-            border-radius: 20px;
-            background-color: $c-default-border-color;
-        } */
-
         .month {
             display: flex;
             justify-content: center;
@@ -364,7 +355,6 @@ onMounted(() => {
                 min-width: 14.285%;
                 display: flex;
                 justify-content: center;
-                /* align-items: center; */
             }
         }
     }

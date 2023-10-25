@@ -16,11 +16,7 @@ const meta = {
             description: '캐러셀의 높이',
             defaultValue: 300,
         },
-        contentPadding: {
-            description: '캐러셀의 wrapper 패딩',
-            control: null,
-        },
-        imageSrcList: {
+        images: {
             description: '이미지 리스트',
             defaultValue: [] as string[],
         },
@@ -55,7 +51,7 @@ export const Default: Story = {
         docs: {
             source: {
                 code: `
-<c-carousel v-bind="args" :imageScrList="imageSrcList"/>
+<c-carousel v-bind="args" :images="images"/>
 `
             }
         }
@@ -66,7 +62,7 @@ export const Default: Story = {
         showIndicator: true,
         showArrow: true,
         autoPlay: false,
-        imageSrcList: ['https://fakeimg.pl/250', 'https://fakeimg.pl/200', 'https://fakeimg.pl/300'],
+        images: ['https://fakeimg.pl/250', 'https://fakeimg.pl/200', 'https://fakeimg.pl/300'],
     },
 };
 
@@ -75,7 +71,7 @@ export const AutoPlay: Story = {
         docs: {
             source: {
                 code: `
-<c-carousel v-bind="args" :imageScrList="imageSrcList" autoPlay :interval="3"/>
+<c-carousel v-bind="args" :images="images" autoPlay :interval="3"/>
 `
             }
         }
@@ -87,6 +83,6 @@ export const AutoPlay: Story = {
         showArrow: true,
         autoPlay: true,
         interval: 3,
-        imageSrcList: ['https://fakeimg.pl/250', 'https://fakeimg.pl/200', 'https://fakeimg.pl/300'],
+        images: ['https://fakeimg.pl/250', 'https://fakeimg.pl/200', 'https://fakeimg.pl/300'],
     },
 };
