@@ -38,11 +38,11 @@
                     :style="{ backgroundImage: `url(${item})` }"
                 />
             </div>
-            <div v-if="showIndicator" class="dot-wrapper">
+            <div v-if="showIndicator" class="indicator-wrapper">
                 <div
                     v-for="(item, index) in props.images"
                     :key="item"
-                    class="dot"
+                    class="indicator"
                     :class="[index === currentIndex ? 'active' : '']"
                     @click="() => moveDirect(index)"
                 />
@@ -186,7 +186,7 @@ const mouseLeave = () => {
 
     overflow: hidden;
 
-    .dot-wrapper {
+    .indicator-wrapper {
         width: 100%;
         height: 10%;
         opacity: 0.3;
@@ -202,7 +202,7 @@ const mouseLeave = () => {
         bottom: 0;
         left: 0;
 
-        .dot {
+        .indicator {
             width: 10px;
             height: 10px;
             border-radius: 100%;
