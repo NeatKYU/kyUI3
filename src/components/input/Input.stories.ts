@@ -14,19 +14,15 @@ const meta = {
             description: '인풋의 스타일에 적용되는 `type`',
             defaultValue: 'text',
             control: 'select',
-            options: [
-                'text',
-                'textarea',
-                'email',
-                'phone',
-            ]
+            options: ['text', 'email', 'phone'],
         },
         placeholder: {
             description: '인풋 placeholder',
             defaultValue: 'input',
         },
         isValidate: {
-            description: '인풋에 입력한 값이 유효한 값인지 체크할지 말지 정하는 변수',
+            description:
+                '인풋에 입력한 값이 유효한 값인지 체크할지 말지 정하는 변수',
             default: true,
         },
         disabled: {
@@ -58,7 +54,7 @@ const meta = {
         helperText: {
             description: 'input 도움말',
             defaultValue: '',
-        }
+        },
     },
 } satisfies Meta<typeof Input>;
 
@@ -81,7 +77,7 @@ export const Default: Story = {
         },
         template: `
             <Input v-bind="args" v-model="value"></Input>
-        `
+        `,
     }),
     args: {
         type: 'text',
@@ -102,7 +98,7 @@ export const InputWithLabelAndHelperText: Story = {
         },
         template: `
             <Input v-bind="args" v-model="value"></Input>
-        `
+        `,
     }),
     args: {
         type: 'text',
@@ -111,26 +107,5 @@ export const InputWithLabelAndHelperText: Story = {
         disabled: false,
         label: 'label',
         helperText: '헬퍼 텍스트 입니다.',
-    },
-};
-
-export const Textarea: Story = {
-    render: (args) => ({
-        components: {
-            Input,
-        },
-        setup() {
-            const value = ref('');
-            return { args, value };
-        },
-        template: `
-            <Input v-bind="args" v-model="value"></Input>
-        `
-    }),
-    args: {
-        type: 'textarea',
-        placeholder: 'input',
-        isValidate: true,
-        disabled: false,
     },
 };
