@@ -2,6 +2,7 @@ import type { App } from 'vue';
 
 // components
 import { Input } from './components/input/index';
+import { TextArea } from './components/textarea/index';
 import { Icon } from './components/icon/index';
 import { Button, ButtonGroup } from './components/button/index';
 import { Switch } from './components/switch/index';
@@ -110,6 +111,10 @@ const components = [
         name: 'c-accordion-group',
         value: AccordionGroup,
     },
+    {
+        name: 'c-textarea',
+        value: TextArea,
+    },
 ];
 
 const kyui3 = {
@@ -143,6 +148,7 @@ export {
     Modal,
     Accordion,
     AccordionGroup,
+    TextArea,
     FontAwesomeIcon,
 };
 
