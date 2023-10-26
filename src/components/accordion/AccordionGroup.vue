@@ -4,6 +4,8 @@
     </div>
 </template>
 
+<script setup lang="ts" name="c-accordion-group"></script>
+
 <style lang="scss" scoped>
 @import '../../styles/common.scss';
 .c-accordion-group {
