@@ -1,12 +1,22 @@
-# kyUI for Vue3.x
-Vue3.x를 위한 컴포넌트 라이브러리
+<p align='center'>
+    <font size="7">🌠 kyUI3 🌠</font>
+</p>
+<div align='center'>
 
-### install
+[![NPM License](https://img.shields.io/npm/l/all-contributors.svg?style=flat)](https://github.com/NeatKYU/kyUI3/master/LICENSE)  [![NPM Version](https://img.shields.io/npm/v/kyui3.svg?style=flat)](//npmjs.com/package/kyui3)  [![NPM Downloads](https://img.shields.io/npm/dt/kyui3.svg?style=flat)](//npmjs.com/package/kyui3)  
+
+👉 [kyUI3 storybook demo page](https://master--62f34ed2f44bd94b7764438f.chromatic.com) 📘 
+</div>
+
+# kyUI for Vue3.x
+### UI component library for Vue3.x
+
+## 🛠️ install
 ```
 npm install kyui3
 ```
 
-### Usage
+## 📖 Usage
 ```
 // main.ts/js
 import kyui3, { ComponentName } from 'kyui3';
@@ -25,7 +35,8 @@ app.component('your-want-tag-name', ComponentName);
 <your-want-tag-name/>
 ```
 
-### Show Storybook Doc Page
+## 📑 Show Storybook Doc Page
+🔗 [kyUI3 storybook page](https://master--62f34ed2f44bd94b7764438f.chromatic.com)
 ```
 git clone https://github.com/NeatKYU/kyUI3.git
 cd kyUI3
