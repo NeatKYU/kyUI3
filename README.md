@@ -5,7 +5,7 @@
 
 [![NPM License](https://img.shields.io/npm/l/all-contributors.svg?style=flat)](https://github.com/NeatKYU/kyUI3/master/LICENSE)  [![NPM Version](https://img.shields.io/npm/v/kyui3.svg?style=flat)](//npmjs.com/package/kyui3)  [![NPM Downloads](https://img.shields.io/npm/dt/kyui3.svg?style=flat)](//npmjs.com/package/kyui3)  
 
-👉 [kyUI3 storybook page](https://master--62f34ed2f44bd94b7764438f.chromatic.com) 📘 
+👉 [kyUI3 storybook demo page](https://master--62f34ed2f44bd94b7764438f.chromatic.com) 📘 
 </div>
 
 # kyUI for Vue3.x
