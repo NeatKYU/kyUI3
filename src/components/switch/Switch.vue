@@ -1,34 +1,32 @@
 <template>
     <input 
-        :id="props.inputId"
+        :id="inputID"
         type="checkbox"
         class="c-switch"
         @click="moveBall"
     />
     <label 
-        :for="props.inputId"
+        :for="inputID"
         class="c-switch-label"
         :class="[classes, onoffClass]"
-        :style="{backgroundColor: on ? props.toggleColor : ''}"
+        :style="{backgroundColor: on ? props.color : ''}"
         @mousedown.prevent
     />
 </template>
 
 <script setup lang="ts" name="c-switch">
 import { ref, computed } from 'vue';
+import genUUID from '@/utils/genUUID';
 
 const emit = defineEmits(['change']);
+const inputID = genUUID();
 
 const props = defineProps({
     size: {
         type: String,
         default: 'medium',
     },
-    inputId: {
-        type: String,
-        default: 'toggle',
-    },
-    toggleColor: {
+    color: {
         type: String,
         default: '#198754',
     }
