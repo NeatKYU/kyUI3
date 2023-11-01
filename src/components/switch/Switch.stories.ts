@@ -18,7 +18,7 @@ const meta = {
                 'large',
             ],
         },
-        toggleColor: {
+        color: {
             description: '스위치 on 색상 `HEXCODE`',
             defaultValue: '#198754',
         },
